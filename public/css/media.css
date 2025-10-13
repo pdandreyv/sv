@@ -1,0 +1,353 @@
+.css-adaptive {
+	display: block;
+	max-width: 100%;
+	height: auto;
+}
+
+@media (max-width: 1353px) {
+/*Ниже css для главной страницы - svetograd.loc*/
+	.about .video {
+		margin-right: 50px;
+	}
+	.about .video video {
+		max-width: 300px;
+	}
+	.bottom {
+		display: flex;
+		justify-content: center;
+	}
+	.bottom-programs .pr {
+		min-width: 25%;
+		flex: 2;
+	}
+	.bottom-programs .pr .text {
+		font-size: 12px;
+	}
+	.bottom .number {
+		height: 65px;
+		max-width: 65px;
+	}
+	.welcome-contact-open {
+		margin-right: 90px;
+	}
+}
+
+@media (max-width: 993px) and (min-width: 768px) {
+/*Ниже css для svetograd.loc/profile/{id}*/
+	.navbar-header {
+		flex-direction: column;
+		/*justify-content: center;*/
+	}
+	.main-container {
+		display: flex;
+		flex-direction: row;
+	}
+	.container .col-md-9 {
+		flex: 7;
+	}
+	.welcome-contact-open {
+		margin-right: 50px;
+	}
+	.col-md-8 {
+		max-width: 0;
+		flex: 0;
+	}
+}
+
+@media (max-width: 767px) {
+/*Ниже css для главной страницы - svetograd.loc*/
+	.about .video {
+		margin-right: 0px;
+	}
+	.about .video video {
+		max-width: 150px;
+	}
+	.items .row {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+	.items .row li {
+		padding: 10px;
+		margin: 0;
+		max-width: 90%;
+	}
+	.items li.circle {
+		display: none;
+	}
+	.bottom {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+	.bottom .number {
+		background: transparent;
+		height: 45px;
+		max-width: 45px;
+	}
+	.bottom-programs {
+		display: flex;
+		flex-direction: row;
+		padding-bottom: 20px;
+	}
+	.bottom-programs .pr {
+		min-width: 49%;
+	}
+	body.login {
+		background-size: auto;
+	}
+/*Ниже css для svetograd.loc/profile/{id}*/
+	.container {
+		max-width: 100%;
+	}
+	/*#app-navbar-collapse {
+		display: flex;
+		justify-content: flex-end;
+	}
+	.navbar-right {
+		/*margin-top: -1px;*/
+	/*	display: flex;
+		flex-direction: column;
+		justify-content: center;
+		max-width: 50%;
+		background: cyan;
+	}
+	.navbar-right .search-form .form-control {
+	max-width: 200px;*/
+	/*}*/
+	.navbar-right .btn-primary {
+		margin-top: 5px;
+	}
+	.main-container {
+		max-width: 100%;
+		display: flex;
+		flex-direction: row;
+	}
+	#admin-side-menu {
+		max-width: 178px;
+		margin-left: 22px;
+	}
+	.col-md-3 {
+		flex: 3;
+	}
+	.container .col-md-9 {
+		flex: 7;
+		margin: 10px 22px;
+		padding-left: 0;
+	}
+	.posts-list {
+		margin: 22px 22px 0 0;
+	}
+	.navbar-brand {
+		font-size: 22px;
+		line-height: 30px;
+		height: 30px;
+		margin-left: 42px;
+	}
+	.navbar-brand img {
+		height: 27px;
+	}
+	.navbar-toggle {
+		padding: 5px 7px;
+		margin: 5px 15px;
+	}
+	.navbar {
+		min-height: 33px;
+	}
+	.navbar .container {
+		max-height: 32px;
+	}
+	.navbar:after {
+		content: none;
+		clear: both;
+	}
+	.welcome-contact-open {
+		margin-right: 10px;
+		height: 50px;
+		width: 50px;
+	}
+	.col-md-offset-4 {
+		margin-left: 25%;
+	}
+	body.register .panel-body button {
+		margin-left: 0;
+	}
+}
+
+@media (max-width: 576px) {
+	/*Ниже css для svetograd.loc/profile/{id}*/
+	.auth-links {
+		flex-direction: column;
+		text-align: center;
+	}
+	.auth-links i {
+		display: none;
+	}
+	.top {
+		background-size: auto;
+		height: 150px;
+	}
+	.top .title {
+		margin-top: 0;
+	}
+	.about .left {
+		padding-top: 140px;
+		min-width: 100%;
+	}
+	.about .right {
+		max-width: 0;
+		display: none;
+	}
+	.about.row, 
+	.about .left .title {
+		display: flex;
+		flex-direction: column;
+		padding: 0 0 10px 0;
+		width: 100%;
+	}
+	.about .video {
+		top: 20px;
+		left: 30%;
+	}
+	.about .left .text {
+		padding-left: 2%;
+		padding-right: 2%;
+		margin: 0 auto;
+		min-width: 100%;
+		text-align: center;
+	}
+	.items .title {
+		margin: 20px 0;
+	}
+	.about .left .title, .about .left .title span, 
+	.items .title span, 
+	.important .title span {
+		font-size: 1em;
+		margin: 0 auto;
+		text-align: center;
+	}
+	.important .text {
+		margin: 0 3%;
+		font-size: 12px;
+	}
+	.login .panel.panel-default {
+		max-width: 90%;
+	}
+	footer.footer-home {
+		display: block;
+		background-repeat: repeat;
+	}
+	footer.footer-home .container-fluid {
+		margin-top: 0;
+	}
+/*Ниже css для svetograd.loc/profile/{id}*/
+	.main-container {
+		max-width: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+	.container-fluid .col-md-8 .row {
+		flex-direction: column;
+		justify-content: flex-start;
+		font-size: 10px;
+	}
+	.navbar > .navbar-brand {
+		font-size: 18px;
+		line-height: 30px;
+		margin-left: 22px;
+	}
+	.navbar-brand img {
+		height: 25px;
+	}
+	.welcome-contact-open {
+		height: 40px;
+		width: 40px;
+	}
+	.contact-open-icon {
+		font-size: 22px;
+	}
+	.col-md-3 {
+		flex: 7;
+		justify-content: center;
+	}
+	#admin-side-menu {
+		/*max-width: 248px;*/
+		margin: 0 auto;
+	}
+	.panel.panel-default:not(.note-editor) {
+		width: 100%;
+	}
+	body.register .panel-body input {
+		width: 100%;
+		margin-left: 5px;
+	}
+	.col-md-offset-4 {
+		margin-left: 12%;
+	}
+	body.register .panel-body button {
+		margin-left: 0;
+	}
+	.input input{
+		width: 100%;
+	}
+	.password {
+		margin-left: 0;
+	}
+	body.login label.remember {
+		float: none;
+	}
+	.btn {
+		margin-top: 15px;
+	}
+}
+
+@media (max-width: 322px) {
+	.navbar > .navbar-brand {
+		font-size: 12px;
+		line-height: 20px;
+		margin-left: 15px;
+	}
+	.navbar-brand img {
+		height: 20px;
+	}
+	.navbar-toggle {
+		padding: 4px 5px;
+		margin: 3px 10px;
+	}
+	.welcome-contact-open {
+		height: 35px;
+		width: 35px;
+	}
+	.contact-open-icon {
+		font-size: 18px;
+	}
+	.panel.panel-default:not(.note-editor) {
+		width: 100%;
+	}
+	body.register .panel-body input {
+		width: 100%;
+		margin-left: 5px;
+	}
+	.col-md-offset-4 {
+		margin-left: 8%;
+	}
+	body.register .panel-body button {
+		margin-left: 0;
+	}
+	.input input{
+		width: 100%;
+	}
+	.password {
+		margin-left: 0;
+	}
+	body.login label.remember {
+		float: none;
+	}
+	.btn {
+		margin-top: 15px;
+	}
+	h2, .h2 {
+		font-size: 24px;
+	}
+}

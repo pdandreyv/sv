@@ -1,0 +1,125 @@
+.dm-uploader-panel .text-center {
+    text-align: center!important;
+}
+
+.dm-uploader-panel .p-5 {
+    padding: 3rem!important;
+}
+
+.dm-uploader-panel .card-header {
+    padding: .75rem 1.25rem;
+    margin-bottom: 0;
+    background-color: rgba(0,0,0,.03);
+    border-bottom: 1px solid rgba(0,0,0,.125);
+}
+
+.dm-uploader-panel .card {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+    margin-top: 0px;
+}
+
+.dm-uploader-panel .media {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+}
+
+.dm-uploader-panel .preview-img {
+    width: 64px;
+    height: 64px;
+}
+
+.dm-uploader-panel .mr-3, .dm-uploader-panel .mx-3 {
+    margin-right: 1rem!important;
+}
+
+.dm-uploader-panel .mb-2, .dm-uploader-panel .my-2 {
+    margin-bottom: .5rem!important;
+}
+
+.dm-uploader-panel img {
+    vertical-align: middle;
+    border-style: none;
+}
+
+.dm-uploader-panel .mb-1, .dm-uploader-panel .my-1 {
+    margin-bottom: .25rem!important;
+}
+
+.dm-uploader-panel .media-body {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+}
+
+.dm-uploader-panel .bg-primary {
+    background-color: #007bff!important;
+}
+
+.dm-uploader-panel .bg-success {
+    background-color: #28a745!important;
+}
+
+.dm-uploader-panel .progress-bar {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    color: #fff;
+    text-align: center;
+    background-color: #007bff;
+    transition: width .6s ease;
+}
+
+.dm-uploader-panel .text-success {
+    color: #28a745!important;
+}
+
+.dm-uploader-panel .h-100 {
+    height: 100%!important;
+}
+
+.dm-uploader-panel [name='main_photo']{
+    height: 64px;
+    margin-top: 0;
+}
+
+.dm-uploader-panel .p-2 {
+    padding: .5rem!important;
+    padding-top: 0.5rem !important;
+    padding-right: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+    padding-left: 0.5rem !important;
+}
+
+.dm-uploader-panel .delete-icon {
+    height: 64px;
+    line-height: 64px;
+}
+
+.dm-uploader-panel ul {
+    height: 280px; 
+    overflow-y: scroll;
+}

@@ -1,0 +1,216 @@
+#admin-side-menu  > .active > a {
+    color: #23527c;
+    background-color: #eee;
+    text-decoration: none;
+}
+
+.SumoSelect .select-all {
+    height: 40px;    
+}
+
+.datepicker .table>tbody>tr>td.day {
+    cursor: pointer;
+}
+
+.datepicker .table>tbody>tr>td.today {
+    cursor: pointer;
+    border: solid 1px;
+}
+
+.datepicker .table>tbody>tr>td.new {
+    color: #999;    
+}
+
+.datepicker .table>tbody>tr>td.old {
+    color: #999;    
+}
+
+.datepicker .table>tbody>tr>td.disabled {
+    cursor: inherit;
+    background-color: #ddd;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  /* margin-bottom: 135px; */
+  background-color: #ffffff;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 135px;  
+  background-color: #f5f5f5;
+}
+
+.navbar-nav > li > form {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    line-height: 22px;
+}
+
+.nav > li > form {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: 0;
+
+}
+
+/* search result drop down tip */
+.wrapper-dropdown {
+    position: relative;
+}
+
+.wrapper-dropdown .users-dropdown {
+    position: absolute;
+    top: 105%;
+    margin-top: 1px;
+    left: -1px;
+    right: -1px;
+     
+    background: white;
+    list-style: none;
+    transition: all 0.3s ease-out;
+    z-index:1000;
+    margin: 0px;
+    padding: 0px;
+}
+
+.wrapper-dropdown .users-dropdown li.user-tip-item {
+    position: relative; /* Enable absolute positioning for checkboxes */ 
+    margin: 0px;
+    padding: 0px; 
+    border: 1px solid #ccd0d2; 
+    height:auto; 
+    cursor:pointer
+}  
+
+.wrapper-dropdown .products-dropdown {    
+    position: absolute;
+    top: 105%;
+    margin-top: 1px;
+    left: -1px;
+    right: -1px;
+     
+    background: white;                    
+    list-style: none;
+    transition: all 0.3s ease-out;
+    z-index:1000;
+    margin: 0px;
+    padding: 0px;    
+}
+
+.wrapper-dropdown .products-dropdown li.product-tip-item {
+    position: relative;
+    margin: 0px;
+    padding: 0px; 
+    border: 1px solid #ccd0d2; 
+    height:auto; 
+    cursor:pointer
+}
+
+.product-thumb {
+    object-fit: cover;
+    width: 100px;
+    height: 100px;
+}
+
+/* Hover state */
+ 
+.wrapper-dropdown-search .users-dropdown li.user-tip-item:hover {
+    background: #f0f0f0;
+}
+
+.wrapper-dropdown .img-container {
+    padding: 10px;
+    display: table-cell;
+}
+
+.wrapper-dropdown .info-container {
+    list-style: none;
+    display: table-cell;
+    padding: 10px;
+}
+
+
+
+body {
+    font-family: sans-serif;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+
+.table-control a span {
+    font-size: 20px;
+}
+
+.drv-table .table-control { width: 60px; }
+
+.drv-table > thead > tr > th {
+    vertical-align: middle;
+} 
+
+.drv-user-list-table tr{
+    height: 117px;
+}
+
+.drv-user-list-table tr td a img {
+    object-fit: cover;
+    width: 100px;
+    height: 100px;
+}
+
+.add_cart input[type="number"] {
+    width:auto;
+    display: inline;
+}
+
+.add_cart {
+    text-align: right;
+}
+
+.add_cart_btn {    
+    margin-bottom: 3;
+} 
+
+.cat-img {
+    object-fit: cover;
+    width: 255px;
+    height: 255px;
+} 
+
+a.contact-open {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -khtml-border-radius: 50%;
+    background-color: #3097D1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    cursor: pointer;
+} 
+
+span.contact-open-icon {
+    color: white;
+    font-size: 30px;
+} 
+
+@media only screen and (max-device-width: 1000px;) and (min-device-width: 768px;) {
+    body {
+        background: green;
+        font-size: 100px;}
+}
