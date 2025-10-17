@@ -27,6 +27,10 @@
                 <label>Описание</label>
                 <textarea class="form-control" name="description" rows="3"></textarea>
             </div>
+            <div class="form-group">
+                <label>Сортировка</label>
+                <input type="number" min="0" step="1" class="form-control" name="sort" value="0">
+            </div>
             <button type="submit" class="btn btn-success">Сохранить</button>
         </form>
     </div>

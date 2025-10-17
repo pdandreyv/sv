@@ -11,7 +11,7 @@ class QuestionnaireController extends Controller
     public function index()
     {
         $menu_item = 'questionnaire';
-        $questions = Questionnaire::orderBy('id', 'desc')->paginate(20);
+        $questions = Questionnaire::orderBy('sort')->orderBy('id', 'desc')->paginate(20);
         return view('admin.questionnaire.index', compact('questions', 'menu_item'));
     }
 
@@ -27,12 +27,14 @@ class QuestionnaireController extends Controller
             'question' => 'required|string|max:500',
             'type' => 'required|in:short,long',
             'description' => 'nullable|string',
+            'sort' => 'nullable|integer|min:0',
         ]);
 
         Questionnaire::create([
             'question' => $request->input('question'),
             'type' => $request->input('type'),
             'description' => $request->input('description'),
+            'sort' => (int) $request->input('sort', 0),
         ]);
 
         return redirect()->route('admin.questionnaire.index');
@@ -51,6 +53,7 @@ class QuestionnaireController extends Controller
             'question' => 'required|string|max:500',
             'type' => 'required|in:short,long',
             'description' => 'nullable|string',
+            'sort' => 'nullable|integer|min:0',
         ]);
 
         $question = Questionnaire::findOrFail($id);
@@ -58,6 +61,7 @@ class QuestionnaireController extends Controller
             'question' => $request->input('question'),
             'type' => $request->input('type'),
             'description' => $request->input('description'),
+            'sort' => (int) $request->input('sort', 0),
         ]);
 
         return redirect()->route('admin.questionnaire.index');

@@ -12,7 +12,7 @@ class QuestionnaireController extends Controller
     public function index()
     {
         $menu_item = 'questionnaire';
-        $questions = Questionnaire::orderBy('id')->get();
+        $questions = Questionnaire::orderBy('sort')->orderBy('id')->get();
         $answers = QuestionnaireAnswer::where('user_id', Auth::id())
             ->get()
             ->keyBy('question_id');

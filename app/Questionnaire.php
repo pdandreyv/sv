@@ -12,6 +12,7 @@ class Questionnaire extends Model
         'question',
         'type',
         'description',
+        'sort',
     ];
 
     public function answers()
