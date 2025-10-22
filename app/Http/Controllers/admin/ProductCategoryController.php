@@ -17,7 +17,11 @@ class ProductCategoryController extends Controller
     {
         $data = [
             'menu_item' => 'product_category',
-            'categories' => ProductCategory::whereNull("parent_id")->with('children')->paginate(20),
+            'categories' => ProductCategory::whereNull("parent_id")
+                ->orderBy('sort')
+                ->orderBy('id')
+                ->with('children')
+                ->paginate(20),
         ];
         return view('admin.product_categories.index', $data);
     }
@@ -45,6 +49,7 @@ class ProductCategoryController extends Controller
           'description' => $request->description,
           'parent_id' => $request->parent_id,
           'for_service' => $request->for_service,
+          'sort' => (int) $request->input('sort', 0),
         ];
         if ($request->photo_file) {
             $file = $request->photo_file;
@@ -77,6 +82,7 @@ class ProductCategoryController extends Controller
           'title' => $request->title,
           'description' => $request->description,
           'for_service' => empty($request->for_service)?0:1,
+          'sort' => (int) $request->input('sort', 0),
         ];
 
         if ($request->photo_file) {
@@ -135,6 +141,7 @@ class ProductCategoryController extends Controller
           'description' => $request->description,
           'parent_id' => empty($request->parent[count($request->parent)-1])?(isset($request->parent[count($request->parent)-2])?$request->parent[count($request->parent)-2]:null):$request->parent[count($request->parent)-1],
           'for_service' => empty($request->for_service)?0:1,
+          'sort' => (int) $request->input('sort', 0),
         ];
 
         if ($request->photo_file) {

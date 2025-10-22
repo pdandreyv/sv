@@ -32,6 +32,11 @@
                 <textarea  name="description" class="form-control" value="{{old('description')}}"></textarea>
             </div>
 
+            <div class="form-group">
+                <label for="sort">Сортировка</label>
+                <input type="number" name="sort" class="form-control" value="{{ old('sort', 0) }}" min="0" step="1">
+            </div>
+
             <div class="pictures">
                 <div class="form-group col-sm-12 col-md-6" style="padding-left: 0; padding-right: 7.5px;">
                     <label for="photo_file">Фото</label>

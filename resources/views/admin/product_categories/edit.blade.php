@@ -26,6 +26,11 @@
             <input type="text" name="description" class="form-control" value="{{$category->description}}" >
         </div>
 
+        <div class="form-group">
+            <label for="sort">Сортировка</label>
+            <input type="number" name="sort" class="form-control" value="{{ $category->sort ?? 0 }}" min="0" step="1">
+        </div>
+
         <div class="form-group row sticky">
             <input type="hidden" value="0" name="for_service">
             <input type="checkbox" class="switch-checkbox" id="for_service" name="for_service" value="1" {{$category->for_service?'checked="checked"':''}} />

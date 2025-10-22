@@ -17,6 +17,7 @@
             <div class="item">
                 <div>
                     <span>{{$item->title}}</span>
+                    <small class="text-muted">(sort: {{$item->sort ?? 0}})</small>
                 </div>
                 <div class="tools">
                     @if($item->children->count() > 0)

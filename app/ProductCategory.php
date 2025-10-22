@@ -15,7 +15,8 @@ class ProductCategory extends Model
         'photo',
         'icon',
         'parent_id',
-        'for_service'
+        'for_service',
+        'sort'
     ];
 
     protected $table = 'products__categories';
@@ -38,7 +39,11 @@ class ProductCategory extends Model
     }
 
     public function getNeighbours() {
-        return ProductCategory::where('parent_id', $this->parent_id)->where('for_service', $this->for_service)->get();
+        return ProductCategory::where('parent_id', $this->parent_id)
+            ->where('for_service', $this->for_service)
+            ->orderBy('sort')
+            ->orderBy('id')
+            ->get();
     }
 
     public function hasProducts() {
@@ -57,7 +62,9 @@ class ProductCategory extends Model
 
     public function children()
     {
-        return $this->hasMany('App\ProductCategory', 'parent_id');
+        return $this->hasMany('App\ProductCategory', 'parent_id')
+            ->orderBy('sort')
+            ->orderBy('id');
     }
 
     public function resources()

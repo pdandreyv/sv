@@ -30,6 +30,11 @@
                 <textarea name="description" class="form-control" value="{{old('description')}}" ></textarea>
             </div>
 
+            <div class="form-group">
+                <label for="sort">Сортировка</label>
+                <input type="number" name="sort" class="form-control" value="{{ old('sort', 0) }}" min="0" step="1">
+            </div>
+
             <div class="form-group row sticky">
                 <input type="hidden" value="0" name="for_service">
                 <input type="checkbox" class="switch-checkbox" id="for_service" name="for_service" value="1" {{old('for_service')?'checked="checked"':''}} />

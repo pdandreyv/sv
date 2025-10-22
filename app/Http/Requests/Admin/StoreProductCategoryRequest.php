@@ -24,7 +24,8 @@ class StoreProductCategoryRequest extends FormRequest
     public function rules()
     {
         return [            
-            'title' => 'required',            
+            'title' => 'required',
+            'sort' => 'nullable|integer|min:0',            
         ];
     }
 }

@@ -17,41 +17,41 @@ class GoodsController extends Controller
 {
     public function indexGoods()
     {
-        $products = Arr::pluck(Product::select('category_id')->paginate(20)->items(), 'category_id');
-        $categories = ProductCategory::where('for_service',0)->whereNull('parent_id')->paginate(20);
-        $notEmptyCategories = [];
-        foreach($categories as $category){
-            if($category->hasProducts()){
-                $notEmptyCategories[] = $category;
-            }
-        }        
-        return view('products.goods')->with(['pageTitle' => 'Наши Товары', 'categories' => $notEmptyCategories, 'products' => $products]);
+        $categories = ProductCategory::where('for_service', 0)
+            ->whereNull('parent_id')
+            ->orderBy('sort')
+            ->orderBy('id')
+            ->get();
+        return view('products.goods')->with([
+            'pageTitle' => 'Наши Товары',
+            'categories' => $categories,
+        ]);
     }
     public function indexServices()
     {
-        $products = Arr::pluck(Product::select('category_id')->paginate(20)->items(), 'category_id');
-        $categories = ProductCategory::where('for_service',1)->whereNull('parent_id')->paginate(20);
-        $notEmptyCategories = [];
-        foreach($categories as $category){
-            if($category->hasProducts()){
-                $notEmptyCategories[] = $category;
-            }
-        }
-        return view('products.goods')->with(['pageTitle' => 'Наши Услуги','categories' => $notEmptyCategories]);
+        $categories = ProductCategory::where('for_service', 1)
+            ->whereNull('parent_id')
+            ->orderBy('sort')
+            ->orderBy('id')
+            ->get();
+        return view('products.goods')->with([
+            'pageTitle' => 'Наши Услуги',
+            'categories' => $categories,
+        ]);
     }
     public function categoryView($category_id)
     {
         $currentCategory = ProductCategory::findOrFail($category_id);
         $products = Product::leftJoin('users', 'users.id', '=', 'products__products.user_id')->select('products__products.*', 'users.first_name', 'users.middle_name', 'users.last_name', 'users.photo as user_photo')->where('category_id',$category_id)->where('is_confirmed', true)->paginate(20);
-        $childCategories = ProductCategory::where('parent_id',$category_id)->paginate(20);
-        $hasChilds = isset($childCategories[0]->title);
-        $notEmptyCategories = [];
-        foreach($childCategories as $category){
-            if($category->hasProducts()){
-                $notEmptyCategories[] = $category;
-            }
-        }
-        return view('products.category')->with(['currentCategory' => $currentCategory, 'products' => $products, 'childCategories' => $notEmptyCategories]);
+        $childCategories = ProductCategory::where('parent_id', $category_id)
+            ->orderBy('sort')
+            ->orderBy('id')
+            ->get();
+        return view('products.category')->with([
+            'currentCategory' => $currentCategory,
+            'products' => $products,
+            'childCategories' => $childCategories,
+        ]);
     }
     public function productView($product_id)
     {
