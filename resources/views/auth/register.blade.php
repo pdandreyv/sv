@@ -12,6 +12,19 @@
                     <form class="form-horizontal" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
 
+                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+
+                            <div class="col-md-6">
+                                <input id="name" type="text" placeholder="Имя" class="form-control" name="name" value="{{ old('name') }}" required>
+
+                                @if ($errors->has('name'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
 
                             <div class="col-md-6">
