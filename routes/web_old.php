@@ -351,11 +351,11 @@ Route::group(['middleware' => ['make-statistic', 'get-statistic']], function () 
                 Route::post('resources/save', 'ResourcesUsersController@ajaxResourceCrud')
                     ->name('resources.save');
 
-                /* Questionnaire User */
-                Route::get('questionnaire', 'QuestionnaireController@index')->name('questionnaire.index');
-                Route::post('questionnaire', 'QuestionnaireController@store')->name('questionnaire.store');
-
             });
+            
+            /* Questionnaire User - доступно всем аутентифицированным пользователям */
+            Route::get('questionnaire', 'QuestionnaireController@index')->name('questionnaire.index');
+            Route::post('questionnaire', 'QuestionnaireController@store')->name('questionnaire.store');
             
             Route::get('my-network', 'ReferalController@myNetwork')->name('my.network');
 
