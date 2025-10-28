@@ -11,7 +11,7 @@
     <script src="{{ asset('js/uploader/config.js') }}"></script>
     <script src="{{ asset('js/uploader/jquery.dm-uploader.min.js') }}"></script>
     <script src="{{ asset('js/uploader/ui.js') }}"></script>
-
+   
     <div class="col-md-9">
         <div class="title">
             <h3>{{$page_title}}</h3>
@@ -27,8 +27,11 @@
         <form action="{{ route($form_route, ['id' => isset($product->id)?$product->id:0]) }}" class="form-horizontal" method="post">
             {{ csrf_field() }}
             <div id="categories-area" class="form-group">
-                <label class="col-md-12 required">Категория</label>
-                @include('products.categories', ['categories' => $categories, 'current' => isset($product) ? $product->category_id : false])
+                @include('products.categories-dropdown', [
+                    'categories' => $categories, 
+                    'current_main' => isset($product) ? ($product->category->parent_id ? $product->category->parent_id : $product->category_id) : false,
+                    'current_sub' => isset($product) ? ($product->category->parent_id ? $product->category_id : false) : false
+                ])
                 @if ($errors->has('category_id'))
                     <div class="col-md-12 form-group alert alert-danger">
                         {{ $errors->first('category_id') }}

@@ -13,13 +13,15 @@ nav {
 	border-bottom: 4px solid #28a745;	
 }
 
-.row {
+.dm-uploader-panel .row {
 	margin-bottom: 1rem;
 }
-[class*="col-"] {
+/*
+.dm-uploader-panel [class*="col-"] {
 	padding-top: 1rem;
 	padding-bottom: 1rem;
 }
+*/
 hr {
 	margin-top: 2rem;
 	margin-bottom: 2rem;

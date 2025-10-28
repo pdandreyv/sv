@@ -30,6 +30,11 @@ class ChangeProfileRequest extends FormRequest
                 'email',
                 Rule::unique('users')->ignore($this->id, 'id')
             ],
+            'city' => [
+                'nullable',
+                'string',
+                'max:255'
+            ],
             'alias' => [
                 'nullable',
                 'regex:/^[a-z0-9\-_]*$/',

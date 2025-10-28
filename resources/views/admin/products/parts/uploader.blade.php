@@ -14,7 +14,7 @@
     <div style="padding-right:0" class="col-md-6 col-sm-12">
         <div class="card">
             <div class="card-header">
-              Список изображений
+              Главное изображение
             </div>
             <ul class="list-unstyled p-2 flex-column" id="files">
                 @if(isset($uploadedFiles))

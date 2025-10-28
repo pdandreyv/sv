@@ -344,16 +344,16 @@
         font-weight: bold; }
 
 footer {
-    padding-top: 20px;
     font-family:Verdana;
     font-size: 14px;
     display:block;
     margin-top:130px;
     background-image:url("../images/bg_footer.png");
-    background-repeat:round;
+    background-repeat:no-repeat;
+    background-position:center top;
     width:100%;
-    padding: 0 0 20px;
-    background-size:100% auto;
+    padding: 20px 0;
+    background-size:100% 100%;
     line-height:18px;
     color: #636b6f;
 }
@@ -374,13 +374,11 @@ footer.footer-home {
 footer.footer-home .container-fluid {
     display:block;
     margin-top: 188px;
-    background-image:url("../images/bg_footer.png");
     width:100%;
     background-size:100%;
     line-height:18px;
     max-width: 100%;
     padding: 0 0 20px;
-    background-repeat:round;
 }
 footer col-md-6 {
     background-color:#f9e283;
@@ -391,6 +389,11 @@ col-md-12 {
 .container-fluid {
     padding-left:0;
     padding-right:0;
+}
+
+.main-container {
+    min-height: calc(100vh - 200px);
+    padding-bottom: 20px;
 }
 .strong {
     font-weight: bold; }
@@ -2072,6 +2075,357 @@ input::-webkit-inner-spin-button {
 
 .news .panel-danger > .panel-heading {
     font-size: 16px;
+}
+
+/* Стили для превью изображений товаров */
+.thumbnail-image {
+    width: 100% !important;
+    height: 60px !important;
+    object-fit: cover !important;
+    cursor: pointer !important;
+    border: 4px solid #ccc !important;
+    border-radius: 10px !important;
+    transition: all 0.2s ease !important;
+    opacity: 0.9 !important;
+    pointer-events: auto !important;
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    background-color: #ffffff !important;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.15) !important;
+    position: relative !important;
+    z-index: 1 !important;
+    display: block !important;
+    margin: 0 auto !important;
+}
+
+.thumbnail-image:hover,
+.image-thumbnails .col-3:hover .thumbnail-image,
+.thumbnail-wrapper:hover .thumbnail-image,
+.thumbnail-container:hover .thumbnail-image {
+    opacity: 1 !important;
+    border-color: #ff6b35 !important;
+    border-width: 5px !important;
+    transform: scale(1.15) !important;
+    box-shadow: 0 6px 12px rgba(255,107,53,0.4) !important;
+    z-index: 100 !important;
+    filter: brightness(1.1) !important;
+    background-color: rgba(255,107,53,0.1) !important;
+}
+
+.thumbnail-image.active {
+    opacity: 1 !important;
+    border-color: #28a745 !important;
+    border-width: 5px !important;
+    box-shadow: 0 0 15px rgba(40,167,69,0.8) !important;
+    z-index: 50 !important;
+    transform: scale(1.1) !important;
+}
+
+.thumbnail-image:active {
+    transform: scale(1.08) !important;
+    transition: all 0.05s ease !important;
+    border-color: #e74c3c !important;
+}
+
+.thumbnail-container {
+    position: relative;
+    padding: 5px;
+    border: 2px dashed transparent;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+}
+
+.thumbnail-container:hover {
+    border-color: #ff6b35 !important;
+    background-color: rgba(255,107,53,0.1) !important;
+    transform: scale(1.05) !important;
+    box-shadow: 0 4px 8px rgba(255,107,53,0.3) !important;
+}
+
+.thumbnail-wrapper {
+    position: relative;
+    overflow: visible;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.thumbnail-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 8px;
+    pointer-events: none;
+}
+
+.thumbnail-wrapper:hover .thumbnail-overlay {
+    opacity: 1;
+}
+
+.thumbnail-text {
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+}
+
+/* Дополнительные правила для hover эффектов */
+.image-thumbnails .col-3 .thumbnail-image:hover {
+    border-color: #ff6b35 !important;
+    border-width: 5px !important;
+    transform: scale(1.15) !important;
+    box-shadow: 0 6px 12px rgba(255,107,53,0.4) !important;
+}
+
+.thumbnail-container:hover .thumbnail-image {
+    border-color: #ff6b35 !important;
+    border-width: 5px !important;
+    transform: scale(1.15) !important;
+    box-shadow: 0 6px 12px rgba(255,107,53,0.4) !important;
+}
+
+/* Для мобильных устройств */
+@media (hover: hover) {
+    .thumbnail-image:hover {
+        border-color: #ff6b35 !important;
+        border-width: 5px !important;
+        transform: scale(1.15) !important;
+        box-shadow: 0 6px 12px rgba(255,107,53,0.4) !important;
+    }
+}
+
+/* Для устройств без hover */
+@media (hover: none) {
+    .thumbnail-image {
+        border-color: #ff6b35 !important;
+        border-width: 3px !important;
+    }
+}
+
+/* Дополнительные правила для надежности */
+.image-thumbnails img:hover,
+.image-thumbnails .thumbnail-image:hover,
+.image-thumbnails .col-3:hover img,
+.image-thumbnails .col-3:hover .thumbnail-image,
+.image-thumbnails .thumbnail-container:hover img,
+.image-thumbnails .thumbnail-wrapper:hover img {
+    border-color: #ff6b35 !important;
+    border-width: 5px !important;
+    transform: scale(1.15) !important;
+    box-shadow: 0 6px 12px rgba(255,107,53,0.4) !important;
+    background-color: rgba(255,107,53,0.1) !important;
+    filter: brightness(1.1) !important;
+}
+
+/* Тестовый класс для отладки кликов */
+.thumbnail-image.test-click {
+    border: 3px solid red !important;
+    background-color: rgba(255, 0, 0, 0.2) !important;
+    transform: scale(1.1) !important;
+}
+
+/* Стили для кнопок превью изображений */
+.thumbnail-button {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    position: relative;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    transition: all 0.2s ease;
+}
+
+.thumbnail-button:hover {
+    transform: scale(1.05);
+}
+
+.thumbnail-button:focus {
+    outline: 2px solid #ff6b35;
+    outline-offset: 2px;
+}
+
+.thumbnail-button:active {
+    transform: scale(0.95);
+}
+
+/* Активное состояние кнопки */
+.thumbnail-button--active {
+    border: 3px solid #28a745 !important;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(40,167,69,0.8) !important;
+}
+
+/* Стили для ссылок превью изображений (для совместимости) */
+.thumbnail-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    pointer-events: auto;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.thumbnail-link:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+.thumbnail-link:focus {
+    outline: 2px solid #ff6b35;
+    outline-offset: 2px;
+}
+
+/* Стили для контейнера изображений товара в стиле Rozetka */
+.product-images-container {
+    position: relative;
+    max-width: 100%;
+}
+
+/* Основное изображение */
+.main-image-wrapper {
+    position: relative;
+    width: 100%;
+    margin-bottom: 15px;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.main-image {
+    width: 100%;
+    height: 400px;
+    object-fit: contain;
+    display: block;
+    transition: opacity 0.3s ease;
+}
+
+/* Контейнер превью */
+.thumbnails-container {
+    width: 100%;
+}
+
+.thumbnails-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: flex-start;
+}
+
+/* Элементы превью */
+.thumbnail-item {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    border: 2px solid #e5e5e5;
+    border-radius: 6px;
+    background: #fff;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.thumbnail-item:hover {
+    border-color: #ff6b35;
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(255,107,53,0.3);
+}
+
+.thumbnail-item--active {
+    border-color: #ff6b35 !important;
+    border-width: 3px !important;
+    box-shadow: 0 0 0 2px rgba(255,107,53,0.2);
+    transform: scale(1.05);
+}
+
+.thumbnail-item:active {
+    transform: scale(0.95);
+}
+
+/* Изображения в превью */
+.thumbnail-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.2s ease;
+}
+
+.thumbnail-item:hover .thumbnail-image {
+    transform: scale(1.1);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .main-image {
+        height: 300px;
+    }
+    
+    .thumbnail-item {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .thumbnails-list {
+        gap: 6px;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-image {
+        height: 250px;
+    }
+    
+    .thumbnail-item {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+@keyframes glow {
+    from {
+        box-shadow: 0 0 5px rgba(255,107,53,0.5);
+        transform: scale(1);
+    }
+    to {
+        box-shadow: 0 0 20px rgba(255,107,53,0.8), 0 0 30px rgba(255,107,53,0.6);
+        transform: scale(1.02);
+    }
 }
 
 

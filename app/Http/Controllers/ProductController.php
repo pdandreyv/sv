@@ -156,4 +156,23 @@ class ProductController extends Controller
         return back();
     }
     
+    /**
+     * Получить подкатегории для основной категории
+     */
+    public function getSubcategories($id)
+    {
+        \Log::info('Запрос подкатегорий для категории ID: ' . $id);
+        
+        $subcategories = ProductCategory::where('parent_id', $id)
+            ->where('for_service', 0)
+            ->orderBy('sort')
+            ->orderBy('id')
+            ->get(['id', 'title']);
+            
+        \Log::info('Найдено подкатегорий: ' . $subcategories->count());
+        \Log::info('Подкатегории: ' . $subcategories->toJson());
+            
+        return response()->json($subcategories);
+    }
+    
 }

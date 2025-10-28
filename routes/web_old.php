@@ -357,6 +357,19 @@ Route::group(['middleware' => ['make-statistic', 'get-statistic']], function () 
             Route::get('questionnaire', 'QuestionnaireController@index')->name('questionnaire.index');
             Route::post('questionnaire', 'QuestionnaireController@store')->name('questionnaire.store');
             
+            /* API для подкатегорий */
+            Route::get('api/categories/{id}/subcategories', 'ProductController@getSubcategories');
+            
+            /* Тестовый маршрут для проверки категорий */
+            Route::get('test-categories', function() {
+                $mainCategories = \App\ProductCategory::whereNull('parent_id')->where('for_service', 0)->get();
+                $subcategories = \App\ProductCategory::whereNotNull('parent_id')->where('for_service', 0)->get();
+                return response()->json([
+                    'main_categories' => $mainCategories,
+                    'subcategories' => $subcategories
+                ]);
+            });
+            
             Route::get('my-network', 'ReferalController@myNetwork')->name('my.network');
 
         });
