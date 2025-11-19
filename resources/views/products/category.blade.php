@@ -93,7 +93,7 @@
                     @endif
             </td>
             <td class="col-md-2">
-               <a href="{{ route('products.product', ['product_id' => $product->id]) }}">
+               <a href="{{ route('profile.show', ['id' => $product->user_id]) }}">
                         <div class="title">
                             <h4>{{$product->last_name.' '.str_limit($product->first_name, 1,'.').str_limit($product->middle_name, 1, '.')}}</h4>
                         </div>

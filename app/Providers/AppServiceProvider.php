@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +20,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // Если сконфигурированный URL приложения использует https — форсируем https для генерации ссылок
+        $appUrl = (string) config('app.url');
+        if (stripos($appUrl, 'https://') === 0) {
+            URL::forceScheme('https');
+        }
     }
 }

@@ -41,7 +41,7 @@
             </div>
             <div class="author col-2">
                 <h4>Автор</h4>
-                <a href="{{ route('products.product', ['product_id' => $product->id]) }}">
+                <a href="{{ route('profile.show', ['id' => $product->user_id]) }}">
                     <div class="photo">
                         @if ($product->user_photo)
                             <img src="/images/users_photos/{{$product->user_photo}}" alt="{{$product->title}}">

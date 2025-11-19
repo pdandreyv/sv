@@ -40,13 +40,13 @@
             <tr class="client_info">
                 <td>
                     @if($product->image()->where('main', 1)->first())
-                    <a href="{{route('products.product', ['id'=>$product->id])}}">
+                    <a href="{{route('products.product', ['product_id'=>$product->id])}}">
                     <img width=100 src="images/products/{{ $product->image()->where('main', 1)->first()->new_name }}">
                     </a>
                     @endif
                 </td>  
                 <td>
-                    <a href="{{route('products.product', ['id'=>$product->id])}}">
+                    <a href="{{route('products.product', ['product_id'=>$product->id])}}">
                     {{$product->title}}
                     </a>
                 </td>               
