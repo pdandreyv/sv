@@ -4,43 +4,59 @@
     <div class="title">
         <h2>{{$currentCategory->title}}</h2>
     </div>
-   
+
+    {{-- Хлебные крошки --}}
+    @if(!empty($breadcrumb) && count($breadcrumb))
+        <nav aria-label="breadcrumb" class="mb-3">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ route('products.goods') }}">Категории</a></li>
+                @foreach($breadcrumb as $idx => $bc)
+                    @if($idx < count($breadcrumb) - 1)
+                        <li class="breadcrumb-item">
+                            <a href="{{ route('products.category', ['category_id' => $bc->id]) }}">{{$bc->title}}</a>
+                        </li>
+                    @else
+                        <li class="breadcrumb-item active" aria-current="page">{{$bc->title}}</li>
+                    @endif
+                @endforeach
+            </ol>
+        </nav>
+    @endif
+
     @if ($currentCategory->description)
         <div class="col-12 row description">
-           
             <br><br>
             <div class="alert alert-info col-12">
                 {!! $currentCategory->description !!}
             </div>
         </div>
-        
     @endif
-    @isset($childCategories[0]->title)
-        
-            <div class="col-12 subtitle">
-                <h3>Категории</h3>
-            </div>
+
+    {{-- Если есть подкатегории, рисуем их как на главной странице категорий и НЕ показываем список товаров --}}
+    @if(isset($childCategories) && $childCategories->count() > 0)
+        <div class="panel-categories">
             <br>
-        <div class="row categories products">
-            @foreach ($childCategories as $category)
-                <div class="col-md-2 category-item">
-                    <a href="{{ route('products.category', ['category_id' => $category->id]) }}" title="{{$category->description}}">
-                        <div class="photo">
-                            @if ($category->photo && file_exists(public_path().'/images/product_category_photos/'.$category->photo))
-                                <img class="cat-img" src="/images/product_category_photos/{{$category->photo}}" alt="{{$category->title}}">
-                            @else
-                                <img src="/images/placeholder.png" alt="temporary_no_photo">
-                            @endif
-                        </div>
-                        <div class="title">
-                            <h3>{{$category->title}}</h3>
-                        </div>
-                    </a>
-                </div>
-            @endforeach
+            <div class="row">
+                @foreach ($childCategories as $category)
+                    <div class="col-md-2 category-item">
+                        <a href="{{ route('products.category', ['category_id' => $category->id]) }}" title="{{$category->description}}">
+                            <div class="photo">
+                                @if ($category->photo && file_exists(public_path().'/images/product_category_photos/'.$category->photo))
+                                    <img class="cat-img" src="/images/product_category_photos/{{$category->photo}}" alt="{{$category->title}}">
+                                @else
+                                    <img src="/images/placeholder.png" alt="temporary_no_photo">
+                                @endif
+                            </div>
+                            <div class="title">
+                                <h3>{{$category->title}}</h3>
+                            </div>
+                        </a>
+                    </div>
+                @endforeach
+            </div>
+            <br><br>
         </div>
-          <br>
-    @endisset
+    @else
 
         <table class="table table-bordered table-categories">
           <tr>
@@ -109,6 +125,7 @@
           </tr>
           @endforeach
         </table>
+    @endif
     </div>
     
 @endsection

@@ -4,6 +4,20 @@
     <div class="title">
         <h2>{{$product->title}}</h2>
     </div>
+    {{-- Хлебные крошки --}}
+    @if(!empty($breadcrumb) && count($breadcrumb))
+        <nav aria-label="breadcrumb" class="mb-3">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ route('products.goods') }}">Категории</a></li>
+                @foreach($breadcrumb as $bc)
+                    <li class="breadcrumb-item">
+                        <a href="{{ route('products.category', ['category_id' => $bc->id]) }}">{{$bc->title}}</a>
+                    </li>
+                @endforeach
+                <li class="breadcrumb-item active" aria-current="page">{{$product->title}}</li>
+            </ol>
+        </nav>
+    @endif
     <hr style="border-top: 3px solid #eeeeee;">
     <div class="row product">
         <?php $images = $product->image()->where('main', 1)->first(); ?>

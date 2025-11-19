@@ -47,15 +47,44 @@ class GoodsController extends Controller
             ->orderBy('sort')
             ->orderBy('id')
             ->get();
+        // Хлебные крошки: от корня к текущей категории
+        $breadcrumb = [];
+        $parentIds = $currentCategory->getAllParents(); // упорядочено от корня к родителю
+        foreach ($parentIds as $pid) {
+            $cat = ProductCategory::find($pid);
+            if ($cat) {
+                $breadcrumb[] = $cat;
+            }
+        }
+        $breadcrumb[] = $currentCategory;
         return view('products.category')->with([
             'currentCategory' => $currentCategory,
             'products' => $products,
             'childCategories' => $childCategories,
+            'breadcrumb' => $breadcrumb,
         ]);
     }
     public function productView($product_id)
     {
         $product = Product::leftJoin('users', 'users.id', '=', 'products__products.user_id')->select('products__products.*', 'users.first_name', 'users.middle_name', 'users.last_name', 'users.photo as user_photo')->where('products__products.id',$product_id)->first();
-        return view('products.product')->with('product', $product);
+        // Хлебные крошки для товара
+        $breadcrumb = [];
+        if ($product && $product->category_id) {
+            $category = ProductCategory::find($product->category_id);
+            if ($category) {
+                $parentIds = $category->getAllParents();
+                foreach ($parentIds as $pid) {
+                    $cat = ProductCategory::find($pid);
+                    if ($cat) {
+                        $breadcrumb[] = $cat;
+                    }
+                }
+                $breadcrumb[] = $category;
+            }
+        }
+        return view('products.product')->with([
+            'product' => $product,
+            'breadcrumb' => $breadcrumb,
+        ]);
     }
 }
