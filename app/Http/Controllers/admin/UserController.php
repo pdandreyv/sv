@@ -21,13 +21,58 @@ use Illuminate\Support\Facades\Mail;
 class UserController extends Controller
 {	
 
-    public function index()
+    public function index(Request $request)
     {   
-        $data = [
-            'menu_item' => 'users',
-            'users' => User::paginate(120),
+        $menu_item = 'users';
+
+        $allowedPerPage = [20, 50, 100, 500];
+        $perPage = (int) $request->input('per_page', 50);
+        if (!in_array($perPage, $allowedPerPage, true)) {
+            $perPage = 50;
+        }
+
+        $allowedSorts = ['id', 'email', 'name', 'created_at'];
+        $sort = $request->input('sort', 'id');
+        if (!in_array($sort, $allowedSorts, true)) {
+            $sort = 'id';
+        }
+        $dir = strtolower($request->input('dir', 'desc')) === 'asc' ? 'asc' : 'desc';
+
+        $q = trim((string) $request->input('q', ''));
+        $filters = [
+            'email' => trim((string) $request->input('email', '')),
+            'name' => trim((string) $request->input('name', '')),
+            'first_name' => trim((string) $request->input('first_name', '')),
+            'last_name' => trim((string) $request->input('last_name', '')),
+            'phone_number' => trim((string) $request->input('phone_number', '')),
+            'city' => trim((string) $request->input('city', '')),
+            'alias' => trim((string) $request->input('alias', '')),
         ];
-        return view('admin.users.users', $data);
+
+        $query = User::query()->with(['type']);
+
+        if ($q !== '') {
+            $query->where(function($w) use ($q) {
+                $like = '%'.$q.'%';
+                $w->where('email', 'like', $like)
+                  ->orWhere('name', 'like', $like)
+                  ->orWhere('first_name', 'like', $like)
+                  ->orWhere('last_name', 'like', $like)
+                  ->orWhere('phone_number', 'like', $like)
+                  ->orWhere('city', 'like', $like)
+                  ->orWhere('alias', 'like', $like);
+            });
+        }
+
+        foreach ($filters as $field => $value) {
+            if ($value !== '') {
+                $query->where($field, 'like', '%'.$value.'%');
+            }
+        }
+
+        $users = $query->orderBy($sort, $dir)->paginate($perPage)->appends($request->all());
+
+        return view('admin.users.users', compact('menu_item', 'users', 'perPage', 'allowedPerPage', 'sort', 'dir', 'q', 'filters'));
     }
 
     public function create(Request $request)
