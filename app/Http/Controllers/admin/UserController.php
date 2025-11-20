@@ -249,6 +249,10 @@ class UserController extends Controller
             'alias' => $request->alias,
         ];    
 
+        if ($request->filled('password')) {
+            $userData['password'] = bcrypt($request->password);
+        }
+
         if($request->birth_year && $request->birth_mounth && $request->birth_day){
             $userData['birth_date'] = $request->birth_year.'-'.$request->birth_mounth.'-'.$request->birth_day;
         }

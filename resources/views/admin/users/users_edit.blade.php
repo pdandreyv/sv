@@ -387,15 +387,17 @@
             <div class="form-group">
                 <button type="submit" class="btn btn-success">Сохранить</button>
             </div>
-        </form>
-
-        <div class="form-group">
             <hr />
             <h4>Изменить пароль</h4>
             <hr />
-        </div>
+            <div class="form-group col-sm-12 col-md-8" style="padding-left: 0;">
+                <label for="new_password">Новый пароль</label>
+                <input type="text" name="password" id="new_password" class="form-control" autocomplete="new-password" style="max-width: 300px; display: inline-block; margin-right: 10px;"><br><br>
+                <button type="button" class="btn btn-success" id="btn-generate-password" style="margin-right: 10px;">Сгенерировать пароль</button>
+                <button type="submit" class="btn btn-success" id="btn-save-password" disabled>Сохранить пароль</button>
+            </div>
+        </form>
 
-        <a class="btn btn-success" href="{{route('admin.users.generate.password', ['id'=>$user->id])}}">Сгенерировать новый пароль</a>
         <hr />
         <script type="text/javascript">
             $(document).ready(function () {
@@ -409,6 +411,24 @@
                 });
                 var scanItemWidth = $('.scan-item').width();
                 $('.scan-item').height(scanItemWidth);
+
+                function toggleSavePwd() {
+                    var enabled = $('#new_password').val().trim() !== '';
+                    $('#btn-save-password').prop('disabled', !enabled);
+                }
+
+                $('#btn-generate-password').on('click', function() {
+                    var chars = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789!@#$%^&*';
+                    var pass = '';
+                    for (var i = 0; i < 12; i++) {
+                        pass += chars.charAt(Math.floor(Math.random() * chars.length));
+                    }
+                    $('#new_password').val(pass);
+                    toggleSavePwd();
+                });
+
+                $('#new_password').on('input change', toggleSavePwd);
+                toggleSavePwd();
             });
 
             $('.date').datepicker({

@@ -82,7 +82,7 @@
                 @endphp
                 <th>{!! sort_link('email','Логин') !!}</th>
                 <th>{!! sort_link('name','Отображаемое имя') !!}</th>
-                <th>Роли</th>
+                <th>Тип</th>
                 <th style="width: 130px;">{!! sort_link('created_at','Создан') !!}</th>
                 <th style="width: 130px;">Действия</th>
             </tr>
@@ -97,7 +97,7 @@
                             <span>{{$user->name}}</span>
                         </td>
                         <td>
-                            <span>{{$user->getRolesDisplay()}}</span>
+                            <span>{{ ($user->type)?$user->type->name:'' }}</span>
                         </td>
                         <td><span>{{ optional($user->created_at)->format('Y-m-d') }}</span></td>
                         <td class="text-right" style="white-space: nowrap; width: 130px;">
