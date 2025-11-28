@@ -1,4 +1,5 @@
 <div class="content posts-list">
+    @if(isset($posts))
     @foreach($posts as $post)
         <div class="panel panel-info post-item">
             <div class="panel-heading">
@@ -24,5 +25,8 @@
             </div>
         </div>
     @endforeach
+    @endif
+        @if(isset($posts))
     {{ $posts->links() }}
+        @endif
 </div>

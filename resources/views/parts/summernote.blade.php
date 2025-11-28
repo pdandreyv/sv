@@ -15,7 +15,7 @@
             <div class="form-group">
                 <label for="post_title">Заголовок записи</label>
                 @if (\Request::is('post/edit/*') || \Request::is('admin/post/edit/*'))
-                    <input id="post_title" name="post_title" class="form-control" placeholder="Название" value="{{$post_title}}" type="text"/>
+                    <input id="post_title" name="post_title" class="form-control" placeholder="Название" value="{{$post_item->post_title}}" type="text"/>
                 @else
                     <input id="post_title" name="post_title" class="form-control" data-value="{{old('post-title')}}" placeholder="Название" value="{{old('post-title')}}" type="text" />
                 @endif
@@ -28,9 +28,9 @@
             <div class="form-group">
                 <label for="content">Содержимое записи</label>
                 @if (\Request::is('post/edit/*') || \Request::is('admin/post/edit/*'))
-                    <textarea id="content" name="post_content" class="form-control" placeholder="Что нового?.." data-value="{{$post_content}}">{{$post_content}}</textarea>
+                    <textarea id="content" name="post_content" class="form-control tiny" placeholder="Что нового?.." data-value="{{$post_item->post_content}}">{{$post_item->post_content}}</textarea>
                 @else
-                    <textarea id="content" name="post_content" class="form-control" placeholder="Что нового?.." data-value="{{old('post_content')}}">{{old('post_content')}}</textarea>
+                    <textarea id="content" name="post_content" class="form-control tiny" placeholder="Что нового?.." data-value="{{old('post_content')}}">{{old('post_content')}}</textarea>
                 @endif
             </div>
             @if($errors->has('post_content'))
@@ -54,14 +54,14 @@
             @endif
             <div class="form-group">
 
-                @if (\Request::is('post/edit/*') || \Request::is('admin/post/edit/*')) 
+                @if (\Request::is('post/edit/*') || \Request::is('admin/post/edit/*'))
                     <button title="Обновить" class="btn btn-success" type="submit">Обновить</button>
-                    
+
                     <a href="{{ route('profile.my-page', ['id' => Auth::user()->id])}}" title="К записям" class="btn btn-default">К записям</a>
 
                     <div class="pull-right">
                         <a href="{{ route('posts.delete', $post_id) }}" title="Удалить запись"  onclick='return confirm("Вы действительно хотите удалить запись?")'  class="btn btn-danger">Удалить</a>
-                        
+
                         <button class="btn btn-warning" id="clear_post">Очистить</button>
                     </div>
                 @else

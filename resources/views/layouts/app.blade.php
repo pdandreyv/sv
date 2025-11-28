@@ -17,5 +17,9 @@
         </div>
         @yield('before-body-end-scripts')
     </body>
+
+
+    <script src="/js/tinymce/tinymce.min.js"></script>
+    <script src="/js/tinymce/tiny-init.js"></script>
 </html>
 
