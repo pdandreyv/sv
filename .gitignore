@@ -40,3 +40,4 @@ public/images/qrcodes/*
 Thumbs.db
 *.css.map
 *.log
+/.osp/project.ini
