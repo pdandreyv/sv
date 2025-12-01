@@ -11,13 +11,18 @@
 |
 */
 
-Route::group(['middleware' => ['make-statistic', 'get-statistic']], function () { 
+Route::group(['middleware' => ['make-statistic', 'get-statistic']], function () {
+
+    foreach (\App\StaticPage::query()->get() as $elem){
+        if(strpos($elem->alias,'/')==false)
+            Route::get('/'.$elem->alias, [\App\Http\Controllers\PageController::class, 'viewPage']);
+    }
 
     Route::post('send-contact-form', 'ModalController@contactFormPost')->name('send.contact.form');
 
     Route::get('contact-form', 'ModalController@contactForm')->name('contact.form');
 
-    Route::get('r/{id}', 'ReferalController@index')->name('referal.link');    
+    Route::get('r/{id}', 'ReferalController@index')->name('referal.link');
 
     Route::get('/', function () {
         return view('welcome');
@@ -39,13 +44,13 @@ Route::group(['middleware' => ['make-statistic', 'get-statistic']], function () 
     Route::post('password/reset', [\App\Http\Controllers\Auth\NewPasswordController::class, 'store'])->name('password.update');
 
     // Верификация email: используйте встроенные контроллеры при необходимости
-    
-    Route::group(['middleware' => ['get-status']], function () {            
+
+    Route::group(['middleware' => ['get-status']], function () {
         Route::get('profile/show/{id}', 'ProfileController@show')->name('profile.show');
     });
     Route::post('profile/access/{id}', 'ProfileController@access')->name('profile.access');
 
-    Route::group(['middleware' => 'isAdmin'], function () { 	
+    Route::group(['middleware' => 'isAdmin'], function () {
         /* users */
     	Route::get('admin', 'admin\HomeController@index')->name('admin.home');
     	Route::get('admin/users', 'admin\UserController@index')->name('admin.users');
@@ -75,7 +80,7 @@ Route::group(['middleware' => ['make-statistic', 'get-statistic']], function () 
 
 
         /*roles*/
-        Route::get('admin/roles', 'Admin\RoleController@index')->name('admin.roles');    
+        Route::get('admin/roles', 'Admin\RoleController@index')->name('admin.roles');
         Route::get('admin/roles/create', 'Admin\RoleController@create')->name('admin.roles.create');
         Route::post('admin/roles/store', 'Admin\RoleController@store')->name('admin.roles.store');
         Route::get('admin/roles/update/{id}', 'Admin\RoleController@updateItem')->name('admin.roles.update');
@@ -83,7 +88,7 @@ Route::group(['middleware' => ['make-statistic', 'get-statistic']], function () 
         Route::get('admin/roles/delete/{id}', 'Admin\RoleController@delete')->name('admin.roles.delete');
 
         /*types*/
-        Route::get('admin/user-types', 'admin\UserTypeController@index')->name('admin.user-types');    
+        Route::get('admin/user-types', 'admin\UserTypeController@index')->name('admin.user-types');
         Route::get('admin/user-types/create', 'admin\UserTypeController@create')->name('admin.user-types.create');
         Route::post('admin/user-types/store', 'admin\UserTypeController@store')->name('admin.user-types.store');
         Route::get('admin/user-types/update/{id}', 'admin\UserTypeController@updateItem')->name('admin.user-types.update');
@@ -110,7 +115,7 @@ Route::group(['middleware' => ['make-statistic', 'get-statistic']], function () 
         Route::get('admin/product-categories/childs/{id}/for_service/{for_service}', 'admin\ProductCategoryController@getChilds')->name('admin.products.get-childs');
 
         /* product controller */
-        Route::get('admin/products', 'admin\ProductController@index')->name('admin.products');    
+        Route::get('admin/products', 'admin\ProductController@index')->name('admin.products');
         Route::get('admin/products/create', 'admin\ProductController@create')->name('admin.products.create');
         Route::post('admin/products/store', 'admin\ProductController@store')->name('admin.products.store');
         Route::get('admin/products/update/{id}', 'admin\ProductController@updateItem')->name('admin.products.update');
@@ -136,7 +141,7 @@ Route::group(['middleware' => ['make-statistic', 'get-statistic']], function () 
         Route::post('admin/mailing/send', 'admin\MailingController@send')->name('admin.mailing.send');
 
         /* order statuses */
-        Route::get('admin/order-statuses', 'admin\OrderStatusController@index')->name('admin.order-statuses');    
+        Route::get('admin/order-statuses', 'admin\OrderStatusController@index')->name('admin.order-statuses');
         Route::get('admin/order-statuses/create', 'admin\OrderStatusController@create')->name('admin.order-statuses.create');
         Route::post('admin/order-statuses/store', 'admin\OrderStatusController@store')->name('admin.order-statuses.store');
         Route::get('admin/order-statuses/update/{id}', 'admin\OrderStatusController@updateItem')->name('admin.order-statuses.update');
@@ -178,9 +183,29 @@ Route::group(['middleware' => ['make-statistic', 'get-statistic']], function () 
         // FAQ question save new
         Route::post('admin/faq/create', 'admin\FaqController@create')
             ->name('admin.faq.create');
-        
+
+
+        Route::get('admin/page', 'admin\PageController@index')
+            ->name('admin.page');
+        // FAQ question edit
+        Route::get('admin/page/edit/{page_id}', 'admin\PageController@edit')
+            ->name('admin.page.edit');
+        // FAQ question save edited
+        Route::post('admin/page/edit/{page_id}/update', 'admin\PageController@update')
+            ->name('admin.page.update');
+        // FAQ question delete
+        Route::get('admin/page/edit/{page_id}/delete', 'admin\PageController@delete')
+            ->name('admin.page.delete');
+        // FAQ question add new
+        Route::get('admin/page/add', 'admin\PageController@add')
+            ->name('admin.page.add');
+        // FAQ question save new
+        Route::post('admin/page/create', 'admin\PageController@create')
+            ->name('admin.page.create');
+
+
         /* network (ups)*/
-        Route::get('admin/network', 'admin\NetworkController@index')->name('admin.network');    
+        Route::get('admin/network', 'admin\NetworkController@index')->name('admin.network');
         Route::get('admin/network/node/create', 'admin\NetworkController@create')->name('admin.network.node.create');
         Route::get('admin/network/users-drop-down/{userName}/user-type/{userType}', 'admin\NetworkController@usersDropDown')->name('admin.network.users.dropdown');
         Route::get('admin/network/users-find/{userName}/user-type/{userType}', 'admin\NetworkController@usersFind')->name('admin.network.users.find');
@@ -190,7 +215,7 @@ Route::group(['middleware' => ['make-statistic', 'get-statistic']], function () 
         Route::post('admin/roles/update/{id}', 'Admin\RoleController@updateItemPost')->name('admin.roles.update.post');*/
         Route::get('admin/network/node/delete/{id}', 'admin\NetworkController@delete')->name('admin.network.node.delete');
         /* funds */
-        Route::get('admin/funds', 'admin\FundController@index')->name('admin.funds'); 
+        Route::get('admin/funds', 'admin\FundController@index')->name('admin.funds');
 
         /*Admin resources*/
         // Resources list
@@ -259,7 +284,7 @@ Route::group(['middleware' => ['make-statistic', 'get-statistic']], function () 
         Route::get('faq', 'FaqController@index')->name('faq');
 
         Route::group(['middleware' => ['auth']], function () {
-            Route::post('admin/products/ajaxUpload', 'admin\ProductController@ajaxUpload')->name('admin.products.ajax-upload');        
+            Route::post('admin/products/ajaxUpload', 'admin\ProductController@ajaxUpload')->name('admin.products.ajax-upload');
             Route::post('admin/products/fileRemove', 'admin\ProductController@fileRemove')->name('admin.products.file-remove');
             Route::post('users/change_password/{id}', 'ProfileController@changePassword')->name('users.change.password');
             Route::get('profile/update/{id}', 'ProfileController@update')->name('profile.update');
@@ -289,7 +314,7 @@ Route::group(['middleware' => ['make-statistic', 'get-statistic']], function () 
             /* user dropdown */
             Route::get('user/users-drop-down/{userName}', 'UserController@usersDropDown')->name('messanger.users.dropdown');
             Route::get('user/users-find/{userName}', 'UserController@usersFind')->name('messanger.users.find');
-            
+
             Route::group(['middleware' => 'is-cooperative'], function () {
                 Route::get('users', 'UserController@index')->name('users.list');
 
@@ -352,14 +377,14 @@ Route::group(['middleware' => ['make-statistic', 'get-statistic']], function () 
                     ->name('resources.save');
 
             });
-            
+
             /* Questionnaire User - доступно всем аутентифицированным пользователям */
             Route::get('questionnaire', 'QuestionnaireController@index')->name('questionnaire.index');
             Route::post('questionnaire', 'QuestionnaireController@store')->name('questionnaire.store');
-            
+
             /* API для подкатегорий */
             Route::get('api/categories/{id}/subcategories', 'ProductController@getSubcategories');
-            
+
             /* Тестовый маршрут для проверки категорий */
             Route::get('test-categories', function() {
                 $mainCategories = \App\ProductCategory::whereNull('parent_id')->where('for_service', 0)->get();
@@ -369,7 +394,7 @@ Route::group(['middleware' => ['make-statistic', 'get-statistic']], function () 
                     'subcategories' => $subcategories
                 ]);
             });
-            
+
             Route::get('my-network', 'ReferalController@myNetwork')->name('my.network');
 
         });

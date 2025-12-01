@@ -28,7 +28,7 @@
         </li>
         <li {{(isset($menu_item) && $menu_item == 'posts')?'class=active':''}}>
             <a href="{{route('admin.posts')}}">Записи</a>
-        </li> 
+        </li>
         <li {{(isset($menu_item) && $menu_item == 'mail_templates')?'class=active':''}}>
             <a href="{{route('admin.mail-templates')}}">Шаблоны писем</a>
         </li>
@@ -52,6 +52,9 @@
         </li>
         <li {{(isset($menu_item) && $menu_item == 'units')?'class=active':''}}>
             <a href="{{route('admin.units.index')}}">Единицы измерения</a>
+        </li>
+        <li {{(isset($menu_item) && $menu_item == 'page')?'class=active':''}}>
+            <a href="{{route('admin.page')}}">Страницы сайта</a>
         </li>
     </ul>
 </div>
