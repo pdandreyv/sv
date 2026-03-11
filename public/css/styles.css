@@ -1028,6 +1028,70 @@ col-md-12 {
     font-weight: 600;
 }
 
+.goods-page .category-catalog-page .category-breadcrumbs .breadcrumb {
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid rgba(212, 205, 179, 0.85);
+    border-radius: 10px;
+}
+
+.goods-page .category-catalog-page .category-description {
+    background: rgba(255, 255, 255, 0.78);
+    border: 1px solid rgba(212, 205, 179, 0.85);
+    color: #3b4a39;
+    border-radius: 12px;
+    margin-bottom: 16px;
+}
+
+.goods-page .category-products-grid {
+    margin: 0 -6px;
+}
+
+.goods-page .product-card-col {
+    padding: 8px 6px;
+}
+
+.goods-page .product-card-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.goods-page .product-card {
+    height: 100%;
+    background: rgba(255, 255, 255, 0.84);
+    border: 1px solid rgba(212, 205, 179, 0.85);
+    border-radius: 14px;
+    box-shadow: 0 8px 20px rgba(52, 56, 41, 0.08);
+    padding: 12px;
+}
+
+.goods-page .product-card-photo {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 12px;
+    overflow: hidden;
+    background: rgba(246, 241, 228, 0.85);
+}
+
+.goods-page .product-card-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.goods-page .product-card-title {
+    margin: 10px 0 8px;
+    color: #2f4731;
+    font-size: 28px;
+    line-height: 1.15;
+    font-weight: 600;
+}
+
+.goods-page .product-card-price {
+    color: #3b4a39;
+    font-size: 22px;
+    font-weight: 700;
+}
+
 
 
 .note-editor.panel {
