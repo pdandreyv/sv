@@ -600,6 +600,90 @@ col-md-12 {
     color: #2f352d;
 }
 
+/* Профиль: единый стиль блоков/кнопок/шрифтов */
+.goods-page.profile-screen .main-container {
+    margin-top: 18px;
+    margin-bottom: 12px;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 0;
+}
+
+.goods-page.profile-screen #admin-side-menu {
+    border: 1px solid rgba(209, 205, 181, 0.85);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.84);
+    box-shadow: 0 6px 16px rgba(52, 56, 41, 0.08);
+}
+
+.goods-page.profile-screen .col-md-9 {
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid rgba(222, 216, 192, 0.8);
+    border-radius: 14px;
+    padding: 16px;
+}
+
+.goods-page.profile-screen .col-md-3 {
+    padding-right: 10px;
+}
+
+.goods-page.profile-screen .col-md-9 {
+    padding-left: 16px;
+}
+
+.goods-page.profile-screen .title h3,
+.goods-page.profile-screen .title h4 {
+    color: #2f4731;
+    font-weight: 700;
+}
+
+.goods-page.profile-screen a,
+.goods-page.profile-screen .navbar-nav > li > a {
+    color: #3b4a39;
+}
+
+.goods-page.profile-screen a:hover,
+.goods-page.profile-screen .navbar-nav > li > a:hover {
+    color: #233521;
+}
+
+.goods-page.profile-screen .btn {
+    border-radius: 10px;
+}
+
+.goods-page.profile-screen .btn-info {
+    background: #f5f1e8;
+    border-color: rgba(121, 133, 106, 0.45);
+    color: #3b4a39;
+}
+
+.goods-page.profile-screen .btn-primary,
+.goods-page.profile-screen .btn-success {
+    background: #2f6c4f;
+    border-color: #2f6c4f;
+}
+
+.goods-page.profile-screen .btn-primary:hover,
+.goods-page.profile-screen .btn-success:hover {
+    background: #24533d;
+    border-color: #24533d;
+}
+
+.goods-page.profile-screen .form-group .btn.btn-primary {
+    background: #2f6c4f;
+    border-color: #2f6c4f;
+    color: #fff;
+}
+
+.goods-page.profile-screen .form-group .btn.btn-primary:hover,
+.goods-page.profile-screen .form-group .btn.btn-primary:focus {
+    background: #24533d;
+    border-color: #24533d;
+    color: #fff;
+}
+
 .goods-page .goods-header-container {
     background: transparent;
     border-bottom: 1px solid rgba(116, 126, 102, 0.75);
@@ -639,6 +723,20 @@ col-md-12 {
     flex: 1;
     display: flex;
     align-items: center;
+}
+
+.goods-page .desktop-nav > ul.navbar-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    gap: 8px;
+    margin: 0;
+    float: none;
+}
+
+.goods-page .desktop-nav > ul.navbar-right > li {
+    float: none;
 }
 
 /* Категории /goods в стиле макета */
@@ -775,6 +873,38 @@ col-md-12 {
     background: #ece5d6;
     border-color: rgba(121, 133, 106, 0.45);
     color: #2f352d;
+}
+
+.goods-page .desktop-nav > ul.navbar-right > li.cart-container > a,
+.goods-page .desktop-nav > ul.navbar-right > li.usr-balance > a {
+    color: #3b4a39;
+}
+
+.goods-page .desktop-nav > ul.navbar-right > li.cart-container > a:hover,
+.goods-page .desktop-nav > ul.navbar-right > li.usr-balance > a:hover {
+    color: #233521;
+}
+
+.goods-page .desktop-nav > ul.navbar-right > li.usr-balance > a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(245, 241, 232, 0.92);
+    border: 1px solid rgba(121, 133, 106, 0.45);
+    border-radius: 10px;
+    padding: 8px 12px;
+}
+
+.goods-page .desktop-nav > ul.navbar-right > li.usr-balance > a .icon,
+.goods-page .desktop-nav > ul.navbar-right > li.usr-balance > a .qty,
+.goods-page .desktop-nav > ul.navbar-right > li.cart-container .basket-content,
+.goods-page .desktop-nav > ul.navbar-right > li.cart-container .basket-content strong {
+    color: #3b4a39;
+}
+
+.goods-page .desktop-nav > ul.navbar-right > li.usr-balance > a:hover {
+    background: #ece5d6;
+    border-color: rgba(121, 133, 106, 0.45);
 }
 
 .goods-page .goods-catalog-grid-wrap {

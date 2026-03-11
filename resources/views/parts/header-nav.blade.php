@@ -27,22 +27,6 @@
     </div>
 @else
     <ul class="nav navbar-nav navbar-right">
-        @if( !(\Request::is('admin/*')) )
-            <li>
-                <form method="GET" class="form-inline search-form" action="{{ route('search') }}">
-                    <label for="search_text"><img src="/images/search.png"></label>
-                    <input type="text" placeholder="Поиск" name="search_text" class="form-control"/>
-                    <label for="search_type">в:</label>
-                    <select class="form-control search-type" name="search_type">
-                        <option value="products">товарах</option>
-                        <option value="service-products">услугах</option>
-                        <option value="posts">статьях</option>
-                    </select>
-                    <button type="submit" class="btn btn-primary" value="Найти">
-                        <span>Искать</span>
-                    </button>
-                </form>
-            </li>
             @if(app('request')->attributes->get('isCooperative'))
                 @php
                     $cartInfo = app('request')->attributes->get('cart');
@@ -60,13 +44,13 @@
                     <span class="qty">{{Auth::user()->getBalanceDisplay()}}</span>
                 </a>
             </li>
-        @endif
+
         <li class="dropdown" id="auth_menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
                 @if( Auth::user()->photo && file_exists(public_path().'/images/users_photos/'.Auth::user()->photo) )
                     <img src="/images/users_photos/{{Auth::user()->photo}}" class="header-user-photo">
                 @else
-                    <img src="{{config('app.placeholder_url')}}50x50/00d2ff/ffffff" class="header-user-photo">
+                    <img src="{{config('app.placeholder_url')}}50x50/c7bea1/ffffff" class="header-user-photo">
                 @endif
                 <span class="caret"></span>
             </a>

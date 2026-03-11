@@ -4,7 +4,7 @@
             @if( Auth::user()->photo && file_exists(public_path().'/images/users_photos/'.Auth::user()->photo) )
                 <img src="/images/users_photos/{{Auth::user()->photo}}" class="css-adaptive">
             @else
-                <img src="{{config('app.placeholder_url')}}250x250/00d2ff/ffffff" class="css-adaptive">
+                <img src="{{config('app.placeholder_url')}}250x250/c7bea1/ffffff" class="css-adaptive">
             @endif
         </li>
         @if(app('request')->attributes->get('canSendCooperativeRequest') && app('request')->attributes->get('emptyForm'))

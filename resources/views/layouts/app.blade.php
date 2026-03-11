@@ -3,7 +3,7 @@
     <head>
         @include('parts.head')
     </head>
-    <body class="goods-page {{ request()->routeIs('login') || request()->routeIs('register') || request()->routeIs('password.*') ? 'auth-screen' : '' }}">
+    <body class="goods-page {{ request()->routeIs('profile.*', 'questionnaire.*', 'news', 'replenish.*', 'money.transfer', 'users.*', 'chat.*', 'my.network', 'products', 'service-products', 'resources.*', 'cooperation.request') ? 'profile-screen' : '' }} {{ request()->routeIs('login') || request()->routeIs('register') || request()->routeIs('password.*') ? 'auth-screen' : '' }}">
         <div id="app">
             @include('parts.header')
             <div class="container main-container">
