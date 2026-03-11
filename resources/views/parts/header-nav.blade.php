@@ -1,16 +1,32 @@
-<ul class="nav navbar-nav navbar-right">
-    @guest
-        <li>
-            <a href="{{ route('login') }}" class="login">
-                <i class="fas fa-sign-in-alt"></i> Войти
-            </a>
-        </li>
-        <li>
-            <a href="{{ route('register') }}" class="register">
-                <i class="fas fa-user-plus"></i> Регистрация
-            </a>
-        </li>
-    @else
+@guest
+    <div class="guest-nav-wrap">
+        <ul class="nav navbar-nav guest-nav-left">
+            <li>
+                <a href="{{ route('products.goods') }}" class="guest-products-btn">
+                    Наши товары
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('products.services') }}" class="guest-services-btn">
+                    Наши услуги
+                </a>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right guest-nav-right">
+            <li>
+                <a href="{{ route('login') }}" class="login">
+                    <i class="fas fa-sign-in-alt"></i> Войти
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('register') }}" class="register">
+                    <i class="fas fa-user-plus"></i> Регистрация
+                </a>
+            </li>
+        </ul>
+    </div>
+@else
+    <ul class="nav navbar-nav navbar-right">
         @if( !(\Request::is('admin/*')) )
             <li>
                 <form method="GET" class="form-inline search-form" action="{{ route('search') }}">
@@ -80,5 +96,5 @@
                 </li>
             </ul>
         </li>
-    @endguest
-</ul>
+    </ul>
+@endguest

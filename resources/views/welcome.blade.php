@@ -29,16 +29,13 @@
                         <a href="{{ route('products.services') }}" class="btn top-service-btn">Наши услуги</a>
                     </div>
                     <div class="cabinet-mini">
-                        <div class="cabinet-mini-title">Личный кабинет</div>
                         @auth
                             <a href="{{ route('profile.my-page', ['id' => Auth::user()->id]) }}" class="btn cabinet-login-btn">Открыть кабинет</a>
                         @else
-                            <form method="POST" action="{{ route('login') }}">
-                                {{ csrf_field() }}
-                                <input type="text" name="email" class="cabinet-input" placeholder="Логин">
-                                <input type="password" name="password" class="cabinet-input" placeholder="Пароль">
-                                <button type="submit" class="btn cabinet-login-btn">Войти</button>
-                            </form>
+                            <div class="cabinet-auth-buttons">
+                                <a href="{{ route('login') }}" class="btn cabinet-auth-btn cabinet-auth-btn-primary">Вход</a>
+                                <a href="{{ route('register') }}" class="btn cabinet-auth-btn cabinet-auth-btn-light">Регистрация</a>
+                            </div>
                         @endauth
                     </div>
                 </div>
