@@ -693,9 +693,25 @@ col-md-12 {
     border: 1px solid rgba(121, 133, 106, 0.45);
 }
 
+.goods-page #auth_menu > a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.goods-page #auth_menu img.header-user-photo {
+    width: 42px !important;
+    height: 42px !important;
+    min-width: 42px;
+    max-width: 42px;
+    border-radius: 50% !important;
+    object-fit: cover !important;
+    display: block;
+}
+
 .goods-page.profile-screen #admin-side-menu > li:first-child,
 .goods-page.profile-screen #admin-side-menu #user-photo {
-    padding: 10px;
+    padding: 4px;
     margin: 6px;
     background: rgba(255, 255, 255, 0.55);
     border-radius: 14px;
