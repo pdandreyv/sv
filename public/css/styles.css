@@ -684,6 +684,35 @@ col-md-12 {
     color: #fff;
 }
 
+.goods-page .navbar-default li img.header-user-photo {
+    width: 42px !important;
+    height: 42px;
+    max-height: none;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid rgba(121, 133, 106, 0.45);
+}
+
+.goods-page.profile-screen #admin-side-menu > li:first-child,
+.goods-page.profile-screen #admin-side-menu #user-photo {
+    padding: 10px;
+    margin: 6px;
+    background: rgba(255, 255, 255, 0.55);
+    border-radius: 14px;
+}
+
+.goods-page.profile-screen #admin-side-menu > li:first-child img,
+.goods-page.profile-screen #admin-side-menu #user-photo img {
+    width: 100% !important;
+    max-width: 230px;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 14px;
+    margin: 0 auto;
+    display: block;
+}
+
 .goods-page .goods-header-container {
     background: transparent;
     border-bottom: 1px solid rgba(116, 126, 102, 0.75);
