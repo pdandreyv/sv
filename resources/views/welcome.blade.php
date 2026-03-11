@@ -19,128 +19,148 @@
         <link rel="stylesheet" type="text/css" href="css/styles.css">
         <link rel="stylesheet" type="text/css" href="css/media.css">
     </head>
-    <body>
+    <body class="landing-page">
         <a class="welcome-contact-open" data-toggle="modal" href="{{route('contact.form')}}"><span class="fa fa-envelope contact-open-icon"></span></a>
         <div class="top">
             @if (Route::has('login'))
-                <div class="auth-links container">
-                    @auth
-                        <a href="{{ route('profile.my-page', ['id' => Auth::user()->id]) }}">Моя страница</a>
-                    @else
-                        <div class="row">
-                            <a href="{{ route('login') }}" class="login">Войти</a>
-                                <span><i class="fas fa-circle"></i></span>
-                            <a href="{{ route('register') }}" class="register">Регистрация</a>
-                        </div>
-                    @endauth
-                    <div class="row goods-and-services">
-                        <a href="{{ route('products.goods') }}" class= "goods">Наши товары</a>
-                        <a href="{{ route('products.services') }}" class= "services">Наши услуги</a>
+                <div class="container hero-top-bar">
+                    <div class="top-services">
+                        <a href="{{ route('products.goods') }}" class="btn top-service-btn">Наши товары</a>
+                        <a href="{{ route('products.services') }}" class="btn top-service-btn">Наши услуги</a>
+                    </div>
+                    <div class="cabinet-mini">
+                        <div class="cabinet-mini-title">Личный кабинет</div>
+                        @auth
+                            <a href="{{ route('profile.my-page', ['id' => Auth::user()->id]) }}" class="btn cabinet-login-btn">Открыть кабинет</a>
+                        @else
+                            <form method="POST" action="{{ route('login') }}">
+                                {{ csrf_field() }}
+                                <input type="text" name="email" class="cabinet-input" placeholder="Логин">
+                                <input type="password" name="password" class="cabinet-input" placeholder="Пароль">
+                                <button type="submit" class="btn cabinet-login-btn">Войти</button>
+                            </form>
+                        @endauth
                     </div>
                 </div>
             @endif
-            <div class="container">
+            <div class="container hero-content">
                 <div class="row">
-                    <div class="title col-12">
-                        <!-- <span>Светоград</span> -->
-                        <img src="/images/title.png" alt="Светоград">
+                    <div class="title col-12 text-center">
+                        <img src="/images/logo.png" alt="Светоград" class="hero-logo">
+                        <div class="hero-brand">Светоград</div>
                     </div>
-                    <!--div class="subtitle col-12">
-                        <div class="tree">
-                            <img src="/images/tree.png" alt="tree">
-                        </div>
-                        <div class="text">
-                            <div class="name">
-                                <span>Древо</span>
-                            </div>
-                            <div class="description">
-                                <span>Коопереативный Альянс</span>
-                            </div>
-                        </div>
-                    </div-->
-                    <div class="down-arrow col-12">
-                        <img src="/images/arrow.png" alt="arrow">
+                    <div class="hero-subtitle col-12 text-center">
+                        Экологическое кооперативное пространство<br> здоровья, благополучия и <br>совместного развития
+                    </div>
+                    <div class="hero-actions col-12 text-center">
+                        <a href="{{ route('register') }}" class="btn hero-btn hero-btn-primary">Вступить в кооператив</a>
+                        <a href="#about-section" class="btn hero-btn hero-btn-light">Узнать подробнее</a>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="about row">
-            <div class="col-9 left">
+        <div class="about" id="about-section">
+            <div class="left">
                 <div class="title"><span>Кратко о кооперативном движении</span></div>
                 <div class="text">
                     <p><b>Кооператив</b> — это объединение людей на добровольной основе с целью удовлетворения своих общих экономических, социальных и культурных потребностей.</p>
                     <p><b>Мы основываемся на таких ценностях</b>, как самоорганизация, самоуправление, взаимопомощь, взаимоподдержка, личная ответственность, честность, открытость, ответственность перед обществом и забота о других людях.</p>
                 </div>
             </div>
-            <div class="col-3 right"></div>
-            <div class="col-4 video">
-                <video src="#" autobuffer autoloop loop poster="/images/video_preview.png"></video>
-            </div>
         </div>
         <div class="items">
             <div class="title">
                 <span>Основные принципы кооперации</span>
             </div>
-            <ul class="row">
-                <li class="col-6">
-                    <h4>Добровольное членство и открытый состав</h4>
-                    <p>Кооперативы являются добровольными организациями, открытыми для всех лиц, которые могут использовать их услуги и готовы взять на себя все связанные с членством обязанности без дискриминации по тендерным, социальным, расовым, политическим или религиозным признакам.</p>
+            <ul class="row principles-grid">
+                <li class="col-md-4 col-sm-6 col-12 principle-item">
+                    <div class="principle-card">
+                        <img src="/images/principi1.png" alt="Добровольное членство">
+                        <h4>Добровольное членство и открытый состав</h4>
+                        <p>Кооперативы являются добровольными организациями, открытыми для всех лиц, которые могут использовать их услуги и готовы взять на себя все связанные с членством обязанности без дискриминации по тендерным, социальным, расовым, политическим или религиозным признакам.</p>
+                    </div>
                 </li>
-                <li class="col-6">
-                    <h4>Демократический контроль со стороны членов</h4>
-                    <p>Кооперативы — это демократические организации, контролируемые их членами, которые активно участвуют в разработке политики и принятии решений. Люди, выполняющие функции выборных представителей, отчитываются перед членами кооперативов. Члены имеют равное право голоса.</p>
+                <li class="col-md-4 col-sm-6 col-12 principle-item">
+                    <div class="principle-card">
+                        <img src="/images/principi2.png" alt="Демократический контроль">
+                        <h4>Демократический контроль со стороны членов</h4>
+                        <p>Кооперативы — это демократические организации, контролируемые их членами, которые активно участвуют в разработке политики и принятии решений. Люди, выполняющие функции выборных представителей, отчитываются перед членами кооперативов. Члены имеют равное право голоса.</p>
+                    </div>
                 </li>
-                <li class="col-6 circle">
-                    <i class="fas fa-circle"></i>
+                <li class="col-md-4 col-sm-6 col-12 principle-item">
+                    <div class="principle-card">
+                        <img src="/images/principi3.png" alt="Экономическое участие">
+                        <h4>Участие членов в экономической деятельности</h4>
+                        <p>Основной капитал кооператива складывается из взносов его членов. Часть такого капитала является общей собственностью кооператива. Члены кооператива выделяют получаемую прибыль для достижения следующих целей: развитие кооператива путем создания резервов, хотя бы часть которых является неделимой; распределение доходов среди членов пропорционально их взносам и поддержка других видов деятельности, утвержденных членами кооператива.</p>
+                    </div>
                 </li>
-                <li class="col-6 circle">
-                    <i class="fas fa-circle"></i>
+                <li class="col-md-4 col-sm-6 col-12 principle-item">
+                    <div class="principle-card">
+                        <img src="/images/principi4.png" alt="Образование и информация">
+                        <h4>Образование, профессиональная подготовка и информация</h4>
+                        <p>Кооперативы обеспечивают образование и профессиональную подготовку своих членов, выборных представителей, руководителей и работников, с тем чтобы они могли эффективно способствовать развитию их кооперативов. Они информируют представителей широкой общественности, в первую очередь молодежь и лидеров движений, о характере и результатах кооперации.</p>
+                    </div>
                 </li>
-                <li class="col-6">
-                    <h4>Участие членов в экономической деятельности</h4>
-                    <p>Основной капитал кооператива складывается из взносов его членов. Часть такого капитала является общей собственностью кооператива. Члены кооператива выделяют получаемую прибыль для достижения следующих целей: развитие кооператива путем создания резервов, хотя бы часть которых является неделимой; распределение доходов среди членов пропорционально их взносам и поддержка других видов деятельности, утвержденных членами кооператива.</p>
+                <li class="col-md-4 col-sm-6 col-12 principle-item">
+                    <div class="principle-card">
+                        <img src="/images/principi5.png" alt="Автономия и независимость">
+                        <h4>Автономия и независимость</h4>
+                        <p>Кооперативы — это автономные организации, действующие на основе самопомощи под контролем их членов. Если они заключают соглашения с другими организациями, в том числе с правительствами, или изыскивают средства из внешних источников, они делают это на условиях, обеспечивающих демократический контроль со стороны их членов и сохранение автономии кооперативов.</p>
+                    </div>
                 </li>
-                <li class="col-6">
-                    <h4>Образование, профессиональная подготовка и информация</h4>
-                    <p>Кооперативы обеспечивают образование и профессиональную подготовку своих членов, выборных представителей, руководителей и работников, с тем чтобы они могли эффективно способствовать развитию их кооперативов. Они информируют представителей широкой общественности, в первую очередь молодежь и лидеров движений, о характере и результатах кооперации.</p>
+                <li class="col-md-4 col-sm-6 col-12 principle-item">
+                    <div class="principle-card">
+                        <img src="/images/principi6.png" alt="Сотрудничество кооперативов">
+                        <h4>Сотрудничество кооперативов</h4>
+                        <p>Кооперативы с максимальной эффективностью служат интересам своих членов и укрепляют кооперативное движение путем совместной работы в рамках местных, национальных, региональных и международных структур.</p>
+                    </div>
                 </li>
-                <li class="col-6 circle">
-                    <i class="fas fa-circle"></i>
+                <li class="col-md-4 col-12 principle-item principle-item-last">
+                    <div class="principle-card">
+                        <img src="/images/principi7.png" alt="Забота об обществе">
+                        <h4>Забота об обществе</h4>
+                        <p>Кооперативы действуют на основе одобренной их членами политики в целях достижения устойчивого развития своих общин.</p>
+                    </div>
                 </li>
-                <li class="col-6 circle">
-                    <i class="fas fa-circle"></i>
-                </li>
-                <li class="col-6">
-                    <h4>Автономия и независимость</h4>
-                    <p>Кооперативы — это автономные организации, действующие на основе самопомощи под контролем их членов. Если они заключают соглашения с другими организациями, в том числе с правительствами, или изыскивают средства из внешних источников, они делают это на условиях, обеспечивающих демократический контроль со стороны их членов и сохранение автономии кооперативов.</p>
-                </li>
-                
-                <li class="col-6">
-                    <h4>Сотрудничество кооперативов</h4>
-                    <p>Кооперативы с максимальной эффективностью служат интересам своих членов и укрепляют кооперативное движение путем совместной работы в рамках местных, национальных, региональных и международных структур.</p>
-                </li>
-                <li class="col-12 circle">
-                    <i class="fas fa-circle"></i>
-                </li>
-                <li class="col-12">
-                    <h4>Забота об обществе</h4>
-                    <p>Кооперативы действуют на основе одобренной их членами политики в целях достижения устойчивого развития своих общин.</p>
-                </li>
-        </ul>
-        </div>
-        <div class="important">
-            <div class="title">
-                <span>Наши цели и миссия</span>
-            </div>
-            <ul class="text">
-                <li>Увеличение благосостояния каждого участника</li>
-                <li>Развитие малого предпринимательства и индивидуального фермерского хозяйства</li>
-                <li>Стабильность и независимость нашего общества от негативно воздействующих факторов внешней среды</li>
-                <li>Здоровый образ жизни, здоровое питание</li>
-                <li>Активное участие в социально-культурной жизни общества</li>
             </ul>
         </div>
-        <div class="bottom row">
+        <section class="mission-footer-section">
+            <div class="important">
+                <div class="important-card">
+                    <div class="title">
+                        <span>Наши цели и миссия</span>
+                    </div>
+                    <ul class="text">
+                        <li>
+                            <img src="/images/cel1.png" alt="Цель 1">
+                            <span>Увеличение благосостояния каждого участника</span>
+                        </li>
+                        <li>
+                            <img src="/images/cel2.png" alt="Цель 2">
+                            <span>Развитие малого предпринимательства и индивидуального фермерского хозяйства</span>
+                        </li>
+                        <li>
+                            <img src="/images/cel3.png" alt="Цель 3">
+                            <span>Стабильность и независимость нашего общества от негативно воздействующих факторов внешней среды</span>
+                        </li>
+                        <li>
+                            <img src="/images/cel4.png" alt="Цель 4">
+                            <span>Здоровый образ жизни, здоровое питание</span>
+                        </li>
+                        <li>
+                            <img src="/images/cel5.png" alt="Цель 5">
+                            <span>Активное участие в социально-культурной жизни общества</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <footer class="footer-home">
+                <div class="container-fluid">
+                    @include('parts.footer')
+                </div>
+            </footer>
+        </section>
+        <!--div class="bottom row">
             <div class="col-12 title">
                 <span>Программы кооператива</span>
             </div>
@@ -178,12 +198,7 @@
                     <span>Транспорт</span>
                 </div>
             </div>
-        </div>
-        <footer class="footer-home">
-            <div class="container-fluid">
-                @include('parts.footer')
-            </div>
-        </footer>
+        </div-->
         <div class="modal fade" id="contactFormModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">

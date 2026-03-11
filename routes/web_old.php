@@ -13,9 +13,18 @@
 
 Route::group(['middleware' => ['make-statistic', 'get-statistic']], function () {
 
-    foreach (\App\StaticPage::query()->get() as $elem){
-        if(strpos($elem->alias,'/')==false)
-            Route::get('/'.$elem->alias, [\App\Http\Controllers\PageController::class, 'viewPage']);
+    if (!app()->runningInConsole()) {
+        try {
+            if (\Illuminate\Support\Facades\Schema::hasTable('pages')) {
+                foreach (\App\StaticPage::query()->get() as $elem) {
+                    if (strpos($elem->alias, '/') === false) {
+                        Route::get('/'.$elem->alias, [\App\Http\Controllers\PageController::class, 'viewPage']);
+                    }
+                }
+            }
+        } catch (\Throwable $e) {
+            // Не роняем загрузку роутов, если БД/таблица еще не готовы.
+        }
     }
 
     Route::post('send-contact-form', 'ModalController@contactFormPost')->name('send.contact.form');

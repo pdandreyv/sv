@@ -1,3 +1,4 @@
+{{-- Старые блоки статистики оставлены на случай возврата.
 <div class="row">
     <div class="col-md-2">
 
@@ -60,4 +61,30 @@
     <div class="col-md-2">
 
     </div>
+</div>
+--}}
+
+<div class="footer-panel-wrap">
+    <div class="footer-panel row">
+        <div class="col-md-4 col-sm-6 col-12 footer-panel-col">
+            <h5>Контакты</h5>
+            <p class="footer-contact-name">Андрей</p>
+            <a href="tel:+380979823294" class="footer-link">+38-097-982-32-94</a>
+        </div>
+
+        <div class="col-md-4 col-sm-6 col-12 footer-panel-col">
+            <h5>Документы</h5>
+            <a href="/ustav" class="footer-link">Устав</a>
+            <a href="/faq" class="footer-link">FAQ</a>
+            <a href="/kak-vstupit" class="footer-link">Как вступить</a>
+        </div>
+
+        <div class="col-md-4 col-sm-12 col-12 footer-panel-col">
+            <h5>Соцсети</h5>
+            <a href="#" class="footer-link">Telegram</a>
+            <a href="#" class="footer-link">VK</a>
+            <a href="#" class="footer-link">YouTube</a>
+        </div>
+    </div>
+    <img src="/images/foot_tree.png" alt="" class="footer-tree">
 </div>

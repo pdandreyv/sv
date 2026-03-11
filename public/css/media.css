@@ -351,3 +351,72 @@
 		font-size: 24px;
 	}
 }
+
+/* Адаптив нового дизайна главной */
+@media (max-width: 767px) {
+	.landing-page .top {
+		background-size: cover;
+		background-position: center;
+		height: auto;
+		min-height: 460px;
+	}
+
+	.landing-page .top-services {
+		flex-direction: row;
+	}
+
+	.landing-page .about .left {
+		min-width: 0;
+		max-width: 100%;
+	}
+}
+
+@media (max-width: 576px) {
+	.landing-page .top .title {
+		margin-top: 6px;
+	}
+
+	.landing-page .top-services {
+		width: 100%;
+	}
+
+	.landing-page .top-service-btn {
+		padding: 8px 10px;
+		font-size: 13px;
+	}
+
+	.landing-page .cabinet-mini {
+		max-width: 100%;
+	}
+
+	.landing-page .about .left .title {
+		display: block;
+		width: auto;
+		padding: 0;
+	}
+
+	.landing-page .about .left .text {
+		min-width: 0;
+		text-align: left;
+		margin: 0;
+	}
+
+	.landing-page .items .row li {
+		max-width: 100%;
+		padding: 0;
+		margin: 10px 0;
+	}
+
+	.footer-cards {
+		padding: 0 10px;
+	}
+
+	.footer-card h5 {
+		font-size: 20px;
+	}
+
+	.footer-link,
+	.footer-contact-name {
+		font-size: 16px;
+	}
+}
