@@ -1,31 +1,29 @@
 @extends('layouts.app')
 
 @section('content')
-<br>    
-    <div class="title">
-        <center><h2>{{$pageTitle}}</h2></center>
+<section class="goods-catalog-page">
+    <div class="title goods-page-title">
+        <h2>{{$pageTitle}}</h2>
     </div>
-    <br><br>
-<div class="panel-categories">
-    <br>
-    <div class="row">
-        @foreach ($categories as $category)
-            <div class="col-md-2 category-item">
+    <div class="panel-categories goods-catalog-grid-wrap">
+        <div class="row goods-catalog-grid">
+            @foreach ($categories as $category)
+                <div class="col-12 category-item goods-card-col">
                     <a href="{{ route('products.category', ['category_id' => $category->id]) }}" title="{{$category->description}}">
-                         <div class="photo">
+                        <div class="photo">
                             @if (!empty($category->photo))
                                 <img class="cat-img" src="/images/product_category_photos/{{$category->photo}}" alt="{{$category->title}}">
-                             @else
-                               <img src="/images/placeholder.png" alt="temporary_no_photo">
+                            @else
+                                <img class="cat-img" src="/images/placeholder.png" alt="temporary_no_photo">
                             @endif
-                         </div>
-                         <div class="title">
+                        </div>
+                        <div class="title">
                             <h3>{{$category->title}}</h3>
-                         </div>
+                        </div>
                     </a>
-            </div>
-        @endforeach
+                </div>
+            @endforeach
+        </div>
     </div>
-   <br><br>
-</div>
+</section>
 @endsection

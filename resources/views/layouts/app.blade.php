@@ -3,7 +3,7 @@
     <head>
         @include('parts.head')
     </head>
-    <body>
+    <body class="{{ request()->routeIs('products.*') ? 'goods-page' : '' }}">
         <div id="app">
             @include('parts.header')
             <div class="container main-container">

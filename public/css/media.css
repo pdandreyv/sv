@@ -300,6 +300,57 @@
 	.btn {
 		margin-top: 15px;
 	}
+
+	.goods-page .goods-logo {
+		width: 72px;
+		height: 72px;
+	}
+
+	.goods-page .goods-brand-text {
+		font-size: 26px;
+	}
+
+	.goods-page .goods-page-title h2 {
+		font-size: 42px;
+		padding: 0;
+	}
+
+	.goods-page .goods-page-title {
+		padding-bottom: 24px;
+		margin-bottom: 18px;
+	}
+
+	.goods-page .goods-page-title::after {
+		height: 44px;
+	}
+
+	.goods-page .desktop-nav .navbar-nav.navbar-right {
+		gap: 4px;
+	}
+
+	.goods-page .desktop-nav .navbar-nav.navbar-right > li > a.login,
+	.goods-page .desktop-nav .navbar-nav.navbar-right > li > a.register {
+		padding: 5px 8px;
+		font-size: 13px;
+	}
+
+	.goods-page .goods-catalog-grid .category-item > a {
+		min-height: 246px;
+		padding: 10px 10px 8px;
+	}
+
+	.goods-page .goods-catalog-grid .category-item .photo {
+		height: auto;
+	}
+
+	.goods-page .goods-catalog-grid .goods-card-col {
+		flex: 0 0 50%;
+		max-width: 50%;
+	}
+
+	.goods-page .goods-catalog-grid .category-item h3 {
+		font-size: 24px;
+	}
 }
 
 @media (max-width: 322px) {
