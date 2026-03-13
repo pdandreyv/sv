@@ -360,6 +360,73 @@
 		font-size: 18px;
 	}
 
+	.goods-page .product-main-grid {
+		margin-bottom: 10px;
+	}
+
+	.goods-page .product-main-photo img {
+		inset: 12px;
+		width: calc(100% - 24px);
+		height: calc(100% - 24px);
+	}
+
+	.goods-page .product-info-card {
+		margin-top: 10px;
+	}
+
+	.goods-page .product-info-card h3 {
+		font-size: 30px;
+	}
+
+	.goods-page .product-info-price {
+		font-size: 24px;
+	}
+
+	.goods-page .product-price-box {
+		font-size: 20px;
+	}
+
+	.goods-page .product-price-box span {
+		font-size: 18px;
+	}
+
+	.goods-page .product-qty-box .qty-btn,
+	.goods-page .product-qty-box .quantity {
+		height: 48px;
+	}
+
+	.goods-page .product-qty-box .qty-btn {
+		font-size: 28px;
+		width: 50px;
+		flex: 0 0 50px;
+	}
+
+	.goods-page .product-qty-box {
+		width: 88%;
+	}
+
+	.goods-page .product-qty-box .quantity {
+		font-size: 18px;
+	}
+
+	.goods-page .product-purchase-box .add_cart_btn {
+		font-size: 19px;
+	}
+
+	.goods-page .product-description-card h4,
+	.goods-page .product-related h3 {
+		font-size: 30px;
+	}
+
+	.goods-page .product-description-card p {
+		font-size: 18px;
+	}
+
+	.goods-page .product-thumb-btn {
+		width: 62px;
+		height: 62px;
+	}
+
 	.goods-page .auth-card {
 		padding: 16px 14px 14px;
 	}

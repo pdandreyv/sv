@@ -22,16 +22,45 @@
     </div>  
 
     <div class="form-group">
-        <label for="name">ПОЛЬЗОВАТЕЛЬ</label>
-        <select name="user_id" class="form-control">
-            <option value=""></option>           
+        <label for="user_search">ПОЛЬЗОВАТЕЛЬ</label>
+        @php
+            $selectedUser = null;
+            if (old('user_id') !== null) {
+                $selectedUser = $users->firstWhere('id', (int) old('user_id'));
+            }
+            $selectedUserDisplay = '';
+            if ($selectedUser) {
+                $selectedUserFio = trim(($selectedUser->last_name ?? '').' '.($selectedUser->first_name ?? '').' '.($selectedUser->middle_name ?? ''));
+                $selectedUserFio = trim(preg_replace('/\s+/', ' ', $selectedUserFio));
+                if ($selectedUserFio === '') {
+                    $selectedUserFio = $selectedUser->name;
+                }
+                $selectedUserDisplay = $selectedUserFio.' (ID: '.$selectedUser->id.')';
+            }
+        @endphp
+        <input type="hidden" name="user_id" id="user_id" value="{{ old('user_id') }}">
+        <input
+            type="text"
+            id="user_search"
+            class="form-control"
+            list="users-list"
+            placeholder="Начните вводить ФИО пользователя"
+            autocomplete="off"
+            value="{{ $selectedUserDisplay }}"
+        >
+        <datalist id="users-list">
             @foreach ($users as $user)
                 @php
-                    $selected = (old('user_id')!==null && $user->id == old('user_id'))?'selected="selected"':'';
+                    $fio = trim(($user->last_name ?? '').' '.($user->first_name ?? '').' '.($user->middle_name ?? ''));
+                    $fio = trim(preg_replace('/\s+/', ' ', $fio));
+                    if ($fio === '') {
+                        $fio = $user->name;
+                    }
+                    $display = $fio.' (ID: '.$user->id.')';
                 @endphp
-                <option value="{{$user->id}}" {{$selected}}>{{$user->name}}</option>
+                <option value="{{ $display }}"></option>
             @endforeach
-        </select>        
+        </datalist>
     </div>
     @if($errors->has('user_id'))
         <div class="form-group alert alert-danger">
@@ -176,6 +205,32 @@
 
 <script>
     $( document ).ready(function() {
+        var userSearchMap = {};
+        @foreach ($users as $user)
+            @php
+                $fio = trim(($user->last_name ?? '').' '.($user->first_name ?? '').' '.($user->middle_name ?? ''));
+                $fio = trim(preg_replace('/\s+/', ' ', $fio));
+                if ($fio === '') {
+                    $fio = $user->name;
+                }
+                $display = $fio.' (ID: '.$user->id.')';
+            @endphp
+            userSearchMap[@json($display)] = {{ (int) $user->id }};
+        @endforeach
+
+        function syncUserIdByInput() {
+            var val = $('#user_search').val();
+            if (userSearchMap[val]) {
+                $('#user_id').val(userSearchMap[val]);
+                return;
+            }
+            $('#user_id').val('');
+        }
+
+        $('#user_search').on('input change blur', function () {
+            syncUserIdByInput();
+        });
+
         $('#is_service').on('change', function () {        
             $('#categories-area .form-group').remove();
             var for_service = $('#is_service').prop("checked")?1:0;

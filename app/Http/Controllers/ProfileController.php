@@ -180,8 +180,16 @@ class ProfileController extends Controller
             $user = User::where('alias', $id)->first();
         }
 
-        $subscribe = (Subscribers::where('user_id', $user->id)
-                ->where('subscriber_id', Auth::user()->id)->first())?true:false;
+        if (!$user) {
+            abort(404);
+        }
+
+        $subscribe = false;
+        if (Auth::check()) {
+            $subscribe = Subscribers::where('user_id', $user->id)
+                ->where('subscriber_id', Auth::id())
+                ->exists();
+        }
 
         $questionnaireAnswers = QuestionnaireAnswer::with('question')
             ->where('user_id', $user->id)

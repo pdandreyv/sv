@@ -66,7 +66,23 @@ class GoodsController extends Controller
     }
     public function productView($product_id)
     {
-        $product = Product::leftJoin('users', 'users.id', '=', 'products__products.user_id')->select('products__products.*', 'users.first_name', 'users.middle_name', 'users.last_name', 'users.photo as user_photo')->where('products__products.id',$product_id)->first();
+        $product = Product::leftJoin('users', 'users.id', '=', 'products__products.user_id')
+            ->select('products__products.*', 'users.first_name', 'users.middle_name', 'users.last_name', 'users.photo as user_photo')
+            ->where('products__products.id', $product_id)
+            ->firstOrFail();
+
+        $productImages = ProductImage::where('product_id', $product->id)
+            ->orderByDesc('main')
+            ->orderBy('id')
+            ->get();
+
+        $relatedProducts = Product::where('category_id', $product->category_id)
+            ->where('is_confirmed', true)
+            ->where('id', '!=', $product->id)
+            ->orderByDesc('id')
+            ->limit(4)
+            ->get();
+
         // Хлебные крошки для товара
         $breadcrumb = [];
         if ($product && $product->category_id) {
@@ -85,6 +101,8 @@ class GoodsController extends Controller
         return view('products.product')->with([
             'product' => $product,
             'breadcrumb' => $breadcrumb,
+            'productImages' => $productImages,
+            'relatedProducts' => $relatedProducts,
         ]);
     }
 }
