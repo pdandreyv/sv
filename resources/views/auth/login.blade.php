@@ -43,6 +43,21 @@
                 <a class="btn auth-btn auth-btn-light" href="{{ route('password.request') }}">Забыли пароль?</a>
             </div>
         </form>
+
+        <div class="auth-social">
+            <div class="auth-social-title">или войти через</div>
+            <div class="auth-social-buttons">
+                <a class="btn auth-social-btn auth-social-google" href="{{ route('auth.social.redirect', ['provider' => 'google']) }}">
+                    <i class="fab fa-google"></i> Google
+                </a>
+                <a class="btn auth-social-btn auth-social-facebook" href="{{ route('auth.social.redirect', ['provider' => 'facebook']) }}">
+                    <i class="fab fa-facebook-f"></i> Facebook
+                </a>
+                <a class="btn auth-social-btn auth-social-telegram" href="{{ route('auth.social.redirect', ['provider' => 'telegram']) }}">
+                    <i class="fab fa-telegram-plane"></i> Telegram
+                </a>
+            </div>
+        </div>
     </div>
 </div>
 @endsection

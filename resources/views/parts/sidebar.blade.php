@@ -37,16 +37,15 @@
         <li>
             <a href="{{ route('products.services') }}">Наши услуги</a>
         </li>
-        
-        <li {{(isset($menu_item) && $menu_item == 'replanish-balance')?'class=active':''}}>
-            <a href="{{ route('replenish.balance') }}">Пополнение баланса</a>
-        </li>
-        
-        <li {{(isset($menu_item) && $menu_item == 'money-transfer')?'class=active':''}}>
-            <a href="{{ route('money.transfer') }}">Перевод денег</a>
-        </li>        
-
         @if(app('request')->attributes->get('isCooperative'))
+            <li {{(isset($menu_item) && $menu_item == 'replanish-balance')?'class=active':''}}>
+                <a href="{{ route('replenish.balance') }}">Пополнение баланса</a>
+            </li>
+            
+            <li {{(isset($menu_item) && $menu_item == 'money-transfer')?'class=active':''}}>
+                <a href="{{ route('money.transfer') }}">Перевод денег</a>
+            </li>        
+        
             <li {{(isset($menu_item) && $menu_item == 'chat')?'class=active':''}}>
                 @php
                     $mesCount = app('request')->attributes->get('mesCount');

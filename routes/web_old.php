@@ -46,6 +46,14 @@ Route::group(['middleware' => ['make-statistic', 'get-statistic']], function () 
     Route::get('register', [\App\Http\Controllers\Auth\RegisteredUserController::class, 'create'])->name('register');
     Route::post('register', [\App\Http\Controllers\Auth\RegisteredUserController::class, 'store']);
 
+    // Социальная авторизация
+    Route::get('auth/{provider}/redirect', [\App\Http\Controllers\Auth\SocialAuthController::class, 'redirect'])
+        ->where('provider', 'google|facebook|telegram')
+        ->name('auth.social.redirect');
+    Route::get('auth/{provider}/callback', [\App\Http\Controllers\Auth\SocialAuthController::class, 'callback'])
+        ->where('provider', 'google|facebook|telegram')
+        ->name('auth.social.callback');
+
     // Сброс пароля
     Route::get('password/reset', [\App\Http\Controllers\Auth\PasswordResetLinkController::class, 'create'])->name('password.request');
     Route::post('password/email', [\App\Http\Controllers\Auth\PasswordResetLinkController::class, 'store'])->name('password.email');

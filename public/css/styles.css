@@ -600,6 +600,57 @@ col-md-12 {
     color: #2f352d;
 }
 
+.goods-page .auth-social {
+    margin-top: 16px;
+    padding: 14px 12px 10px;
+    border-top: 1px solid rgba(207, 199, 167, 0.65);
+    background: rgba(245, 241, 232, 0.55);
+    border-radius: 12px;
+    text-align: center;
+}
+
+.goods-page .auth-social-title {
+    color: #3f503d;
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.goods-page .auth-social-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 9px;
+    justify-content: center;
+}
+
+.goods-page .auth-social-btn {
+    border-radius: 12px;
+    width: 100%;
+    max-width: 290px;
+    font-weight: 600;
+    border: 1px solid rgba(121, 133, 106, 0.55);
+    background: linear-gradient(180deg, #f8f3e8 0%, #eee5d3 100%);
+    color: #2f4731;
+    box-shadow: 0 2px 6px rgba(59, 74, 57, 0.1);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 9px 12px;
+    text-align: center;
+}
+
+.goods-page .auth-social-btn:hover {
+    background: linear-gradient(180deg, #efe6d4 0%, #e6dbc4 100%);
+    color: #223422;
+}
+
+.goods-page .auth-social-google i,
+.goods-page .auth-social-facebook i,
+.goods-page .auth-social-telegram i {
+    margin-right: 5px;
+}
+
 /* Профиль: единый стиль блоков/кнопок/шрифтов */
 .goods-page.profile-screen .main-container {
     margin-top: 18px;
