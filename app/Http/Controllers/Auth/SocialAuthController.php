@@ -9,14 +9,19 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
-use Laravel\Socialite\Facades\Socialite;
 
 class SocialAuthController extends Controller
 {
     public function redirect(string $provider): RedirectResponse
     {
         if (in_array($provider, ['google', 'facebook'], true)) {
-            return Socialite::driver($provider)->redirect();
+            $socialite = $this->socialiteFactory();
+            if (!$socialite) {
+                return redirect()->route('login')
+                    ->with('warning', 'Социальный вход не установлен на сервере. Установите пакет laravel/socialite.');
+            }
+
+            return $socialite->driver($provider)->redirect();
         }
 
         if ($provider === 'telegram') {
@@ -45,7 +50,13 @@ class SocialAuthController extends Controller
     {
         try {
             if (in_array($provider, ['google', 'facebook'], true)) {
-                $socialUser = Socialite::driver($provider)->user();
+                $socialite = $this->socialiteFactory();
+                if (!$socialite) {
+                    return redirect()->route('login')
+                        ->with('warning', 'Социальный вход не установлен на сервере. Установите пакет laravel/socialite.');
+                }
+
+                $socialUser = $socialite->driver($provider)->user();
 
                 $providerId = (string) $socialUser->getId();
                 $email = $socialUser->getEmail()
@@ -178,5 +189,14 @@ class SocialAuthController extends Controller
         }
 
         return true;
+    }
+
+    private function socialiteFactory()
+    {
+        if (!interface_exists(\Laravel\Socialite\Contracts\Factory::class)) {
+            return null;
+        }
+
+        return app(\Laravel\Socialite\Contracts\Factory::class);
     }
 }

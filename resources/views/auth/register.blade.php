@@ -56,4 +56,46 @@
         </div>
     </div>
 </div>
+
+<script>
+    (function () {
+        if (!window.location.hash || window.location.hash.indexOf('tgAuthResult=') === -1) {
+            return;
+        }
+
+        function decodeBase64Url(value) {
+            var normalized = value.replace(/-/g, '+').replace(/_/g, '/');
+            while (normalized.length % 4) normalized += '=';
+            try {
+                return atob(normalized);
+            } catch (e) {
+                return null;
+            }
+        }
+
+        var hashParams = new URLSearchParams(window.location.hash.substring(1));
+        var tgAuthResult = hashParams.get('tgAuthResult');
+        if (!tgAuthResult) return;
+
+        var decoded = decodeBase64Url(tgAuthResult);
+        if (!decoded || decoded === 'false') {
+            return;
+        }
+
+        var payload = {};
+        try {
+            payload = JSON.parse(decoded);
+        } catch (e) {
+            var parsed = new URLSearchParams(decoded);
+            parsed.forEach(function (value, key) { payload[key] = value; });
+        }
+
+        if (!payload.id || !payload.hash) {
+            return;
+        }
+
+        var query = new URLSearchParams(payload).toString();
+        window.location.replace("{{ route('auth.social.callback', ['provider' => 'telegram']) }}?" + query);
+    })();
+</script>
 @endsection
